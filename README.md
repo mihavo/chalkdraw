@@ -31,6 +31,33 @@ Then pick the theme: **Preferences: Color Theme** → **Chalkdraw Deep**, **Chal
 
 <br />
 
+## Neovim
+
+The same three variants ship as a Neovim colorscheme, generated from the same palette source, so the two editors never drift apart. Requires Neovim 0.9+ with `termguicolors`.
+
+**lazy.nvim**
+
+```lua
+{
+  'mihavo/chalkdraw',
+  lazy = false,
+  priority = 1000,
+  config = function()
+    vim.cmd.colorscheme('chalkdraw-deep')
+  end,
+}
+```
+
+**packer**
+
+```lua
+use { 'mihavo/chalkdraw', config = function() vim.cmd.colorscheme('chalkdraw-deep') end }
+```
+
+Pick a variant with `chalkdraw-deep`, `chalkdraw-flat` or `chalkdraw-paper`. Treesitter, LSP semantic tokens, diagnostics, git signs and the 16 ANSI terminal colors are all covered, along with Telescope, nvim-tree, neo-tree, nvim-cmp, blink.cmp, which-key, indent guides, notify/noice, mini.nvim, lazy and mason.
+
+<br />
+
 ## Variants
 
 | Theme | Editor | Panels | Notes |
