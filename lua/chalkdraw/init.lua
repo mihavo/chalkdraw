@@ -22,8 +22,25 @@ function M.palette(variant)
   return palette[variant or 'deep']
 end
 
---- Apply a variant. `variant` is 'deep', 'flat' or 'paper'.
-function M.load(variant)
+--- Options set by setup(), used when `:colorscheme chalkdraw-*` is called
+--- directly (the colorscheme command cannot take arguments).
+M.options = { transparent = false }
+
+--- Apply a variant.
+--- @param variant string|table 'deep'|'flat'|'paper', or { variant=, transparent= }
+--- @param opts table|nil { transparent = boolean }
+function M.load(variant, opts)
+  if type(variant) == 'table' then
+    opts = variant
+    variant = opts.variant
+  end
+  opts = vim.tbl_extend('force', {}, M.options, opts or {})
+  -- vim.g.chalkdraw_transparent is the escape hatch for people who only ever
+  -- call :colorscheme and never require the module.
+  if vim.g.chalkdraw_transparent ~= nil then
+    opts.transparent = vim.g.chalkdraw_transparent and true or false
+  end
+
   variant = variant or 'deep'
   local p = palette[variant]
   if not p then
@@ -46,7 +63,7 @@ function M.load(variant)
   vim.g.colors_name = 'chalkdraw-' .. variant
 
   local set = vim.api.nvim_set_hl
-  for group, spec in pairs(groups.build(p)) do
+  for group, spec in pairs(groups.build(p, opts)) do
     set(0, group, spec)
   end
 
@@ -55,9 +72,15 @@ function M.load(variant)
   end
 end
 
---- Present for people who expect a setup() entry point; `opts.variant` selects.
+--- Configure and apply. Options are remembered, so a later
+--- `:colorscheme chalkdraw-flat` keeps them.
+--- @param opts table|nil { variant = 'deep'|'flat'|'paper', transparent = boolean }
 function M.setup(opts)
-  M.load((opts or {}).variant)
+  opts = opts or {}
+  if opts.transparent ~= nil then
+    M.options.transparent = opts.transparent
+  end
+  M.load(opts.variant, opts)
 end
 
 return M

@@ -54,6 +54,21 @@ The same three variants ship as a Neovim colorscheme, generated from the same pa
 use { 'mihavo/chalkdraw', config = function() vim.cmd.colorscheme('chalkdraw-deep') end }
 ```
 
+**Transparent background**
+
+```lua
+{
+  'mihavo/chalkdraw',
+  lazy = false,
+  priority = 1000,
+  config = function()
+    require('chalkdraw').setup({ variant = 'deep', transparent = true })
+  end,
+}
+```
+
+Clears the backgrounds that sit on the terminal — editor, sign column, status line, tab line, file trees — so your terminal's own background shows through. Floats, popups, the completion menu, the cursor line and selections keep theirs, since a transparent popup over arbitrary content is unreadable. The setting survives a later `:colorscheme chalkdraw-flat`. If you only ever use `:colorscheme`, set `vim.g.chalkdraw_transparent = true` before it instead.
+
 Pick a variant with `chalkdraw-deep`, `chalkdraw-flat` or `chalkdraw-paper`. Treesitter, LSP semantic tokens, diagnostics, git signs and the 16 ANSI terminal colors are all covered, along with Telescope, nvim-tree, neo-tree, nvim-cmp, blink.cmp, which-key, indent guides, notify/noice, mini.nvim, lazy and mason.
 
 <br />

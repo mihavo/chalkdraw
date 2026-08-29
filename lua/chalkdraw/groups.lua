@@ -28,7 +28,9 @@ local function blend(a, b, t)
 end
 
 --- Build the full highlight table for one variant.
-function M.build(p)
+--- @param p table resolved palette (lua/chalkdraw/palette.lua)
+--- @param opts table|nil { transparent = boolean }
+function M.build(p, opts)
   local s, u, g = p.syntax, p.ui, p.git
   local bg, chrome, line = p.shell.editor, p.shell.chrome, p.shell.line
   local dark = p.kind == 'dark'
@@ -469,6 +471,29 @@ function M.build(p)
   }
   for group, spec in pairs(plugins) do
     hl[group] = spec
+  end
+
+  -- Transparency: clear the backgrounds that sit directly on the terminal, so
+  -- whatever is behind it shows through. Floats, popups and selections keep
+  -- their backgrounds -- a transparent completion menu is unreadable over
+  -- arbitrary content, which is the same call tokyonight and catppuccin make.
+  if opts and opts.transparent then
+    local clear = {
+      'Normal', 'NormalNC', 'EndOfBuffer', 'SignColumn', 'FoldColumn',
+      'LineNr', 'CursorLineNr', 'MsgArea', 'VertSplit', 'WinSeparator',
+      'StatusLine', 'StatusLineNC', 'TabLine', 'TabLineFill', 'TabLineSel',
+      'WinBar', 'WinBarNC', 'Folded',
+      'NvimTreeNormal', 'NvimTreeWinSeparator', 'NeoTreeNormal', 'NeoTreeNormalNC',
+      'TelescopeNormal', 'TelescopeBorder',
+      'MiniStatuslineFilename', 'MiniTablineCurrent', 'MiniTablineVisible',
+      'MiniTablineHidden',
+    }
+    for _, group in ipairs(clear) do
+      if hl[group] then hl[group].bg = 'NONE' end
+    end
+    -- EndOfBuffer paints its tildes in the background colour to hide them;
+    -- with no background it has to fall back to the dimmest ink.
+    hl.EndOfBuffer = { fg = u.dim, bg = 'NONE' }
   end
 
   return hl
