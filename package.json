@@ -33,7 +33,8 @@
   },
   "scripts": {
     "build": "node src/build.js",
-    "package": "npm run build && npx --yes @vscode/vsce package"
+    "package": "npm run build && npx --yes @vscode/vsce package",
+    "ink": "node scripts/try-ink.js"
   },
   "contributes": {
     "themes": [

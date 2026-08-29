@@ -33,10 +33,10 @@
       "string": "#CE9178",
       "number": "#B5CEA8",
       "comment": "#6D7681",
-      "identifier": "#BDB7AE",
-      "punctuation": "#A39D96",
-      "field": "#BDB7AE",
-      "lineNumber": "#53514D"
+      "identifier": "#E8DCCF",
+      "punctuation": "#C8BDB2",
+      "field": "#E8DCCF",
+      "lineNumber": "#66615B"
     },
     "light": {
       "keyword": "#0B4EA8",

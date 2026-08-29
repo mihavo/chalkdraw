@@ -6,7 +6,7 @@
 
 **A distinct dark theme inspired by classic chalkboards, designed to minimize eye strain**
 
-[![Version](https://vsmarketplacebadges.dev/version-short/michaelvolakis.chalkdraw.svg?color=bdb7ae&labelColor=17191b&style=for-the-badge)](https://marketplace.visualstudio.com/items?itemName=michaelvolakis.chalkdraw)
+[![Version](https://vsmarketplacebadges.dev/version-short/michaelvolakis.chalkdraw.svg?color=e8dccf&labelColor=17191b&style=for-the-badge)](https://marketplace.visualstudio.com/items?itemName=michaelvolakis.chalkdraw)
 [![Installs](https://vsmarketplacebadges.dev/installs-short/michaelvolakis.chalkdraw.svg?color=7aa2f7&labelColor=17191b&style=for-the-badge)](https://marketplace.visualstudio.com/items?itemName=michaelvolakis.chalkdraw)
 [![Downloads](https://vsmarketplacebadges.dev/downloads-short/michaelvolakis.chalkdraw.svg?color=4fc9b0&labelColor=17191b&style=for-the-badge)](https://marketplace.visualstudio.com/items?itemName=michaelvolakis.chalkdraw)
 [![License](https://img.shields.io/github/license/mihavo/chalkdraw?color=d1a8ff&labelColor=17191b&style=for-the-badge)](./LICENSE)
@@ -89,11 +89,11 @@ Pick a variant with `chalkdraw-deep`, `chalkdraw-flat` or `chalkdraw-paper`. Tre
 | Functions and methods | `#d1a8ff` | `#5c15b0` |
 | Strings | `#ce9178` | `#9b3208` |
 | Numbers, constants | `#b5cea8` | `#22660b` |
-| Variables, fields, properties | `#bdb7ae` | `#1e1c18` |
-| Operators, brackets, separators | `#a39d96` | `#5c564d` |
+| Variables, fields, properties | `#e8dccf` | `#1e1c18` |
+| Operators, brackets, separators | `#c8bdb2` | `#5c564d` |
 | Comments | `#6d7681` | `#6e675a` |
-| Line numbers | `#53514d` | `#8e8779` |
-| Cursor | `#bdb7ae` | `#1e1c18` |
+| Line numbers | `#66615b` | `#8e8779` |
+| Cursor | `#e8dccf` | `#1e1c18` |
 | Rails, active marks | `#7aa2f7` | `#2e6da8` |
 | Editor background | `#17191b` | `#ebe6da` |
 | Sidebar, tabs, status bar | `#1b1d1f` | `#e2dcce` |

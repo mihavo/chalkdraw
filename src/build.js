@@ -205,7 +205,7 @@ function buildWorkbench(v, s, u, g, isDark) {
     'editor.lineHighlightBackground': line,
     'editor.lineHighlightBorder': line,
     // Every cursor — editor and terminal — takes the identifier ink rather than
-    // the accent (dark #BDB7AE, Paper #1E1C18).
+    // the accent (the identifier ink, whatever it currently is).
     'editorCursor.foreground': s.identifier,
     'editor.selectionBackground': accentSoft,
     'editor.inactiveSelectionBackground': alpha(u.accent, 0.14),
