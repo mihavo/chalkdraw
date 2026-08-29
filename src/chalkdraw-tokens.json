@@ -34,7 +34,7 @@
       "number": "#B5CEA8",
       "comment": "#6D7681",
       "identifier": "#BDB7AE",
-      "punctuation": "#6A6661",
+      "punctuation": "#A39D96",
       "field": "#BDB7AE",
       "lineNumber": "#53514D"
     },
@@ -126,7 +126,7 @@
     "fieldColor": "equals identifier in all three variants",
     "commentPolicy": "comments must stay readable, not faded below the punctuation color",
     "variantPair": "Deep and Flat are an exact inversion: the same two greys swapped between editor and chrome. Changing one requires mirroring the other.",
-    "inkDerivation": "Dark punctuation is the identifier color at 56% per channel; the line number is 44%. The build recomputes both when the identifier changes.",
+    "inkDerivation": "Dark punctuation is the identifier color at 86% per channel; the line number is 44%. The build recomputes both when the identifier changes.",
     "gitScale": "Git decoration colors come from the `git` group, not from ui.warning/ui.success. Within a mode the six hued statuses share one (L, C) in oklch and differ only in hue, so any adjustment moves the whole mode, never a single status. 'ignored' is exempt."
   }
 }

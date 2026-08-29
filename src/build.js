@@ -59,12 +59,16 @@ const mix = (a, b, t) => {
 const shade = (hex, factor) => rgb2hex(hex2rgb(hex).map((v) => v * factor));
 
 /**
- * Ink derivation: dark punctuation and line numbers
- * are not chosen independently — they are the identifier color at 56% and 44%
- * per channel. Deriving them here rather than hardcoding keeps the three moving
- * together when the ink changes.
+ * Ink derivation: dark punctuation and line numbers are not chosen
+ * independently — they are the identifier color at 86% and 44% per channel.
+ * Deriving them here rather than hardcoding keeps the three moving together
+ * when the ink changes.
+ *
+ * Punctuation was raised from 56% to 86%: at 56% (#6A6661, 3.09:1 on Deep)
+ * operators such as Go's := and brackets read as too muted. It now sits at
+ * 6.56:1, still below the identifier ink so the hierarchy holds.
  */
-const INK_DERIVATION = { punctuation: 0.56, lineNumber: 0.44 };
+const INK_DERIVATION = { punctuation: 0.86, lineNumber: 0.44 };
 
 /** One step toward white (dark themes) or black (Paper) — used for bright ANSI. */
 const step = (hex, isDark, amount = 0.22) =>

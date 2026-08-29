@@ -90,7 +90,7 @@ Pick a variant with `chalkdraw-deep`, `chalkdraw-flat` or `chalkdraw-paper`. Tre
 | Strings | `#ce9178` | `#9b3208` |
 | Numbers, constants | `#b5cea8` | `#22660b` |
 | Variables, fields, properties | `#bdb7ae` | `#1e1c18` |
-| Operators, brackets, separators | `#6a6661` | `#5c564d` |
+| Operators, brackets, separators | `#a39d96` | `#5c564d` |
 | Comments | `#6d7681` | `#6e675a` |
 | Line numbers | `#53514d` | `#8e8779` |
 | Cursor | `#bdb7ae` | `#1e1c18` |
