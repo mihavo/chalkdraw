@@ -1,0 +1,11 @@
+.vscode/**
+.github/**
+node_modules/**
+src/**
+resources/screenshots/**
+resources/icon/chalkdraw-icon-*.png
+resources/icon/chalkdraw-icon.svg
+*.vsix
+.DS_Store
+**/.DS_Store
+.gitignore

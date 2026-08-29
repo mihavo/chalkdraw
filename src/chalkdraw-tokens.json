@@ -1,0 +1,132 @@
+{
+  "$comment": "Chalkdraw palette source (revision 4). src/build.js generates themes/*.json from this file.",
+  "revision": 4,
+  "name": "Chalkdraw",
+  "variants": {
+    "deep": {
+      "kind": "dark",
+      "label": "Chalkdraw Deep",
+      "editorBackground": "#17191B",
+      "chromeBackground": "#1B1D1F",
+      "currentLine": "#1F2125"
+    },
+    "flat": {
+      "kind": "dark",
+      "label": "Chalkdraw Flat",
+      "editorBackground": "#1B1D1F",
+      "chromeBackground": "#17191B",
+      "currentLine": "#232529"
+    },
+    "paper": {
+      "kind": "light",
+      "label": "Chalkdraw Paper",
+      "editorBackground": "#EBE6DA",
+      "chromeBackground": "#E2DCCE",
+      "currentLine": "#DFD8C8"
+    }
+  },
+  "syntax": {
+    "dark": {
+      "keyword": "#7AA2F7",
+      "type": "#4FC9B0",
+      "function": "#D1A8FF",
+      "string": "#CE9178",
+      "number": "#B5CEA8",
+      "comment": "#6D7681",
+      "identifier": "#BDB7AE",
+      "punctuation": "#6A6661",
+      "field": "#BDB7AE",
+      "lineNumber": "#53514D"
+    },
+    "light": {
+      "keyword": "#0B4EA8",
+      "type": "#00655A",
+      "function": "#5C15B0",
+      "string": "#9B3208",
+      "number": "#22660B",
+      "comment": "#6E675A",
+      "identifier": "#1E1C18",
+      "punctuation": "#5C564D",
+      "field": "#1E1C18",
+      "lineNumber": "#8E8779"
+    }
+  },
+  "ui": {
+    "dark": {
+      "border": "#282A2D",
+      "fgStrong": "#E6EAEF",
+      "fgMuted": "#8B939C",
+      "fgFaint": "#6D7681",
+      "fgTree": "#B6BEC7",
+      "accent": "#7AA2F7",
+      "dim": "#3A3D41",
+      "error": "#E06C75",
+      "warning": "#E5C07B",
+      "success": "#4FC9B0"
+    },
+    "light": {
+      "border": "#D9D3C7",
+      "fgStrong": "#2F2B26",
+      "fgMuted": "#6E675D",
+      "fgFaint": "#8C8579",
+      "fgTree": "#4A443C",
+      "accent": "#2E6DA8",
+      "dim": "#C6BFB2",
+      "error": "#B3413B",
+      "warning": "#8A6A18",
+      "success": "#1F7F6E"
+    }
+  },
+  "git": {
+    "$comment": "Git status scale. Within a mode the six hued statuses share one oklch lightness and chroma and differ only in hue; 'ignored' is a deliberate neutral and sits outside the ramp.",
+    "oklch": {
+      "dark": {
+        "L": 0.83,
+        "C": 0.048
+      },
+      "light": {
+        "L": 0.55,
+        "C": 0.075
+      },
+      "hues": {
+        "modified": 85,
+        "untracked": 150,
+        "deleted": 25,
+        "conflicting": 325,
+        "added": 185,
+        "submodule": 265
+      }
+    },
+    "dark": {
+      "modified": "#D6C6A4",
+      "untracked": "#B2D1B7",
+      "deleted": "#E5BCB8",
+      "conflicting": "#D8BDD9",
+      "added": "#A5D2CB",
+      "stageModified": "#A5D2CB",
+      "stageDeleted": "#E5BCB8",
+      "submodule": "#B8C8E7",
+      "ignored": "#575552"
+    },
+    "light": {
+      "modified": "#866E3B",
+      "untracked": "#517E5A",
+      "deleted": "#99605B",
+      "conflicting": "#88628A",
+      "added": "#358077",
+      "stageModified": "#358077",
+      "stageDeleted": "#99605B",
+      "submodule": "#5C719E",
+      "ignored": "#9A9893"
+    }
+  },
+  "rules": {
+    "italics": "none anywhere",
+    "bold": "none anywhere",
+    "fieldColor": "equals identifier in all three variants",
+    "commentPolicy": "comments must stay readable, not faded below the punctuation color",
+    "variantPair": "Deep and Flat are an exact inversion: the same two greys swapped between editor and chrome. Changing one requires mirroring the other.",
+    "inkDerivation": "Dark punctuation is the identifier color at 56% per channel; the line number is 44%. The build recomputes both when the identifier changes.",
+    "gitScale": "Git decoration colors come from the `git` group, not from ui.warning/ui.success. Within a mode the six hued statuses share one (L, C) in oklch and differ only in hue, so any adjustment moves the whole mode, never a single status. 'ignored' is exempt."
+  }
+}

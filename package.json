@@ -1,0 +1,57 @@
+{
+  "name": "chalkdraw",
+  "displayName": "Chalkdraw",
+  "description": "A distinct dark theme inspired by classic chalkboards, designed to minimize eye strain.",
+  "version": "1.0.0",
+  "publisher": "michaelvolakis",
+  "license": "MIT",
+  "icon": "resources/icon/chalkdraw.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mihavo/chalkdraw.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mihavo/chalkdraw/issues"
+  },
+  "homepage": "https://github.com/mihavo/chalkdraw#readme",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "color-theme",
+    "dark",
+    "light",
+    "warm"
+  ],
+  "galleryBanner": {
+    "color": "#17191B",
+    "theme": "dark"
+  },
+  "scripts": {
+    "build": "node src/build.js",
+    "package": "npm run build && npx --yes @vscode/vsce package"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Chalkdraw Deep",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chalkdraw-deep.json"
+      },
+      {
+        "label": "Chalkdraw Flat",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chalkdraw-flat.json"
+      },
+      {
+        "label": "Chalkdraw Paper",
+        "uiTheme": "vs",
+        "path": "./themes/chalkdraw-paper.json"
+      }
+    ]
+  }
+}
