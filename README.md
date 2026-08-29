@@ -70,13 +70,13 @@ Pick a variant with `chalkdraw-deep`, `chalkdraw-flat` or `chalkdraw-paper`. Tre
 
 ## Screenshots
 
-**Flat — split editor and integrated terminal**
+**Flat — TypeScript and the integrated terminal**
 
-![Chalkdraw Flat — split editor and terminal](./resources/screenshots/chalkdraw-flat.png)
+![Chalkdraw Flat — TypeScript and the integrated terminal](./resources/screenshots/chalkdraw-flat.png)
 
-**Paper — the light variant**
+**Paper — the light variant, in Python**
 
-![Chalkdraw Paper](./resources/screenshots/chalkdraw-paper.png)
+![Chalkdraw Paper — Python](./resources/screenshots/chalkdraw-paper.png)
 
 <br />
 

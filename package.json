@@ -1,8 +1,8 @@
 {
   "name": "chalkdraw",
   "displayName": "Chalkdraw",
-  "description": "A distinct dark theme inspired by classic chalkboards, designed to minimize eye strain.",
-  "version": "1.0.0",
+  "description": "A distinct chalkboard-inspired theme in three variants \u2014 Deep and Flat (dark) and Paper (light) \u2014 designed to minimize eye strain.",
+  "version": "1.0.1",
   "publisher": "michaelvolakis",
   "license": "MIT",
   "icon": "resources/icon/chalkdraw.png",
@@ -15,17 +15,17 @@
   },
   "homepage": "https://github.com/mihavo/chalkdraw#readme",
   "engines": {
-    "vscode": "^1.90.0"
+    "vscode": "^1.85.0"
   },
   "categories": [
     "Themes"
   ],
   "keywords": [
-    "theme",
-    "color-theme",
-    "dark",
-    "light",
-    "warm"
+    "chalkboard",
+    "warm",
+    "low contrast",
+    "eye strain",
+    "minimal"
   ],
   "galleryBanner": {
     "color": "#17191B",
