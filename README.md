@@ -15,7 +15,7 @@
 
 <br />
 
-![Chalkdraw Deep — Go](./resources/screenshots/chalkdraw-deep.png)
+![Chalkdraw Deep — TypeScript](./resources/screenshots/chalkdraw-deep.png)
 
 <br />
 
@@ -70,7 +70,7 @@ Pick a variant with `chalkdraw-deep`, `chalkdraw-flat` or `chalkdraw-paper`. Tre
 
 ## Screenshots
 
-**Flat — the same two greys, inverted**
+**Flat — the same two greys, swapped between editor and panels**
 
 ![Chalkdraw Flat](./resources/screenshots/chalkdraw-flat.png)
 
