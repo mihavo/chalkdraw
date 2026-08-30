@@ -80,7 +80,7 @@ Pick a variant with `chalkdraw-deep`, `chalkdraw-flat` or `chalkdraw-paper`. Tre
 | **Chalkdraw Deep** | `#17191b` | `#1b1d1f` | Editor is the darkest surface |
 | **Chalkdraw Flat** | `#1b1d1f` | `#17191b` | The same two greys, inverted |
 | **Chalkdraw Paper** | `#ebe6da` | `#e2dcce` | Warm uncoated stock, never white |
-| **Chalkdraw Cool** | `#1b1d20` | `#17191c` | Faint blue cast, panels darker than the editor |
+| **Chalkdraw Cool** | `#131821` | `#0e141d` | Faint blue cast, panels darker than the editor |
 
 <br />
 
@@ -98,18 +98,18 @@ Pick a variant with `chalkdraw-deep`, `chalkdraw-flat` or `chalkdraw-paper`. Tre
 
 ## Chalkdraw Cool
 
-A near-neutral dark ground with a faint blue cast, where the panels sit one step *darker* than the editor rather than lighter — the inverse of Deep and Flat. The surfaces are lightness-matched to Flat so it reads at the same brightness, and syntax runs at roughly 140% of Deep's chroma, so the colours carry further against the cooler ground: keyword blue and type teal do the structural work, functions are violet, and strings are the only warm note in the code. Identifiers stay a bright warm-neutral chalk white, which is what keeps it recognisably Chalkdraw.
+A near-neutral dark ground with a faint blue cast, where the panels sit one step *darker* than the editor rather than lighter — the inverse of Deep and Flat. The chrome is deliberately darker than Deep and Flat, and syntax runs at roughly 140% of Deep's chroma, so the colours carry further against the cooler ground: keyword blue and type teal do the structural work, functions are violet, and strings are the only warm note in the code. Identifiers stay a bright warm-neutral chalk white, which is what keeps it recognisably Chalkdraw.
 
 **UI**
 
 | Role | Hex |
 | --- | --- |
-| Editor background | `#1b1d20` |
-| Sidebar, tabs, title bar, terminal | `#17191c` |
-| Status bar | `#141619` |
-| Dividers and tab borders | `#23262c` |
-| Active selection | `#25272a` on `#e4eaf3` |
-| Active tab | `#1b1d20`, top border `#5e97ff` |
+| Editor background | `#131821` |
+| Sidebar, tabs, title bar, terminal | `#0e141d` |
+| Status bar | `#0b111a` |
+| Dividers and tab borders | `#1e2733` |
+| Active selection | `#1a2331` on `#e4eaf3` |
+| Active tab | `#131821`, top border `#5e97ff` |
 | Inactive tab text | `#8c97a5` |
 | Foreground | `#e4eaf3` |
 | Description text | `#8c97a5` |
@@ -130,7 +130,7 @@ A near-neutral dark ground with a faint blue cast, where the panels sit one step
 | Functions and methods | `#b79ce8` |
 | Fields, properties, variables | `#a4bdd6` |
 | Strings | `#e8c79a` |
-| Numbers, constants | `#e4798d` |
+| Numbers, constants, `nil`/`true`/`false` | `#e4798d` |
 | Comments | `#5b6675` |
 | Punctuation and operators | `#c3cfdf` |
 | Line numbers | `#464e59` |

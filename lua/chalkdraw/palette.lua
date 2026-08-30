@@ -142,9 +142,9 @@ M.cool = {
   name = 'Chalkdraw Cool',
   kind = 'dark',
   shell = {
-    editor = '#1B1D20',
-    chrome = '#17191C',
-    line = '#25272A',
+    editor = '#131821',
+    chrome = '#0E141D',
+    line = '#1A2331',
   },
   syntax = {
     keyword = '#5E97FF',
@@ -159,7 +159,7 @@ M.cool = {
     lineNumber = '#464E59',
   },
   ui = {
-    border = '#23262C',
+    border = '#1E2733',
     fgStrong = '#E4EAF3',
     fgMuted = '#8C97A5',
     fgFaint = '#5F6A79',

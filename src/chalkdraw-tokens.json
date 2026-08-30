@@ -27,10 +27,10 @@
     "cool": {
       "kind": "dark",
       "label": "Chalkdraw Cool",
-      "editorBackground": "#1B1D20",
-      "chromeBackground": "#17191C",
-      "statusBarBackground": "#141619",
-      "currentLine": "#25272A",
+      "editorBackground": "#131821",
+      "chromeBackground": "#0E141D",
+      "statusBarBackground": "#0B111A",
+      "currentLine": "#1A2331",
       "palette": "cool",
       "gitPalette": "dark"
     }
@@ -99,7 +99,7 @@
       "success": "#1F7F6E"
     },
     "cool": {
-      "border": "#23262C",
+      "border": "#1E2733",
       "fgStrong": "#E4EAF3",
       "fgMuted": "#8C97A5",
       "fgFaint": "#5F6A79",
@@ -163,7 +163,8 @@
     "variantPair": "Deep and Flat are an exact inversion: the same two greys swapped between editor and chrome. Changing one requires mirroring the other.",
     "inkDerivation": "Dark punctuation is the identifier color at 86% per channel; the line number is 44%. The build recomputes both when the identifier changes.",
     "gitScale": "Git decoration colors come from the `git` group, not from ui.warning/ui.success. Within a mode the six hued statuses share one (L, C) in oklch and differ only in hue, so any adjustment moves the whole mode, never a single status. 'ignored' is exempt.",
-    "coolPalette": "Chalkdraw Cool sits at roughly 140% of Deep's syntax chroma, and strings (#E8C79A) are the only warm hue in the code -- identifiers are a warm-neutral chalk white, everything else is cool. If the palette is retuned, that relationship holds: raise or lower the whole set together and keep strings as the single warm note. The surfaces are lightness-matched to Flat in oklch (editor L 0.2295, panels L 0.2121) with Cool's blue hue preserved, and punctuation is lifted to the lightness Deep's 86% ink rule would give, so operators read as brightly as identifiers.",
-    "coolFields": "Cool is the one variant where field/property/variable (#A4BDD6) differs from the default foreground (#F2F0E8). Deep, Flat and Paper keep them equal."
+    "coolPalette": "Chalkdraw Cool sits at roughly 140% of Deep's syntax chroma, and strings (#E8C79A) are the only warm hue in the code -- identifiers are a warm-neutral chalk white, everything else is cool. If the palette is retuned, that relationship holds: raise or lower the whole set together and keep strings as the single warm note. The chrome carries a deliberate blue cast (hue ~260 in oklch) and is intentionally darker than Flat. Punctuation sits at the lightness Deep's 86% ink rule would give, so operators read as brightly as identifiers.",
+    "coolFields": "Cool is the one variant where field/property/variable (#A4BDD6) differs from the default foreground (#F2F0E8). Deep, Flat and Paper keep them equal.",
+    "coolConstants": "Cool only: language constants (nil, true, false, iota) take the number colour #E4798D rather than keyword blue -- they are constants, and it pulls the most frequent literals in Go out of the blue mass. Struct tags were considered and rejected: the Go grammar gives them no scope of their own, so recolouring them would also recolour raw backtick strings such as embedded SQL."
   }
 }

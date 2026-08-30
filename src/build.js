@@ -843,7 +843,7 @@ function buildWorkbench(v, s, u, g, isDark) {
   };
 }
 
-function buildTokenColors(s, u) {
+function buildTokenColors(s, u, pk) {
   const rules = [];
   const push = (name, scope, foreground) =>
     rules.push({ name, scope, settings: { foreground } });
@@ -921,10 +921,27 @@ function buildTokenColors(s, u) {
     settings: { fontStyle: '' },
   });
 
+  // Cool only (tokens.rules.coolConstants): nil/true/false/iota are constants,
+  // not keywords, so they take the number colour. In Go this is the most
+  // frequent literal on screen -- moving it out of the keyword blue is what
+  // stops `if err != nil` reading as one undifferentiated blue phrase.
+  if (pk === 'cool') {
+    push(
+      'Language constants — nil, true, false, iota (Cool)',
+      [
+        'constant.language',
+        'constant.language.boolean',
+        'constant.language.null',
+        'constant.language.iota',
+      ],
+      s.number
+    );
+  }
+
   return rules;
 }
 
-function buildSemantic(s) {
+function buildSemantic(s, pk) {
   const out = {};
   for (const [token, role] of Object.entries(SEMANTIC)) {
     out[token] = { foreground: s[role], fontStyle: '' };
@@ -932,7 +949,10 @@ function buildSemantic(s) {
   // Go/Rust specifics.
   out['*.declaration'] = { fontStyle: '' };
   out['variable.readonly'] = { foreground: s.field, fontStyle: '' };
-  out['variable.readonly.defaultLibrary'] = { foreground: s.keyword, fontStyle: '' };
+  out['variable.readonly.defaultLibrary'] = {
+    foreground: pk === 'cool' ? s.number : s.keyword,
+    fontStyle: '',
+  };
   out['function.defaultLibrary'] = { foreground: s.function, fontStyle: '' };
   out['type.defaultLibrary'] = { foreground: s.keyword, fontStyle: '' };
   out['selfKeyword'] = { foreground: s.keyword, fontStyle: '' };
@@ -979,8 +999,8 @@ function buildTheme(key) {
     __syntax: s,
     __palette: pk,
     colors: buildWorkbench(v, s, u, g, isDark),
-    tokenColors: buildTokenColors(s, u),
-    semanticTokenColors: buildSemantic(s),
+    tokenColors: buildTokenColors(s, u, pk),
+    semanticTokenColors: buildSemantic(s, pk),
   };
 }
 
