@@ -13,52 +13,56 @@
     "flat": {
       "kind": "dark",
       "label": "Chalkdraw Flat",
-      "editorBackground": "#1B1D1F",
-      "chromeBackground": "#17191B",
-      "currentLine": "#232529"
+      "editorBackground": "#1E1F22",
+      "chromeBackground": "#181818",
+      "currentLine": "#2A2C31"
     },
     "paper": {
       "kind": "light",
       "label": "Chalkdraw Paper",
       "editorBackground": "#EBE6DA",
       "chromeBackground": "#E2DCCE",
-      "currentLine": "#DFD8C8"
+      "currentLine": "#CFCABF"
     },
     "cool": {
       "kind": "dark",
       "label": "Chalkdraw Cool",
-      "editorBackground": "#131821",
-      "chromeBackground": "#0E141D",
-      "statusBarBackground": "#0B111A",
-      "currentLine": "#1A2331",
+      "editorBackground": "#1A1D21",
+      "chromeBackground": "#16191D",
+      "statusBarBackground": "#13161A",
+      "currentLine": "#22262B",
       "palette": "cool",
       "gitPalette": "dark"
     }
   },
   "syntax": {
     "dark": {
-      "keyword": "#7AA2F7",
+      "keyword": "#F29790",
       "type": "#4FC9B0",
-      "function": "#D1A8FF",
-      "string": "#CE9178",
-      "number": "#B5CEA8",
+      "function": "#7AA2F7",
+      "string": "#EDE7B2",
+      "number": "#A0D6A6",
       "comment": "#6D7681",
-      "identifier": "#A4BDD6",
-      "punctuation": "#8DA3B8",
-      "field": "#A4BDD6",
-      "lineNumber": "#48535E"
+      "identifier": "#ABBFD6",
+      "punctuation": "#93A4B8",
+      "field": "#ABBFD6",
+      "lineNumber": "#4B545E",
+      "importPath": "#FFD084",
+      "parameter": "#FFC491"
     },
     "light": {
-      "keyword": "#0B4EA8",
-      "type": "#00655A",
-      "function": "#5C15B0",
-      "string": "#9B3208",
-      "number": "#22660B",
-      "comment": "#6E675A",
-      "identifier": "#1E1C18",
-      "punctuation": "#5C564D",
-      "field": "#1E1C18",
-      "lineNumber": "#8E8779"
+      "keyword": "#B7272D",
+      "type": "#006D5C",
+      "function": "#2C59C8",
+      "string": "#726700",
+      "number": "#376D00",
+      "comment": "#4E5D6F",
+      "identifier": "#202E3E",
+      "punctuation": "#576474",
+      "field": "#202E3E",
+      "lineNumber": "#798593",
+      "importPath": "#885E00",
+      "parameter": "#985500"
     },
     "cool": {
       "keyword": "#5E97FF",
@@ -70,7 +74,8 @@
       "identifier": "#F2F0E8",
       "punctuation": "#C3CFDF",
       "field": "#A4BDD6",
-      "lineNumber": "#464E59"
+      "lineNumber": "#464E59",
+      "parameter": "#FFC491"
     }
   },
   "ui": {
@@ -96,10 +101,11 @@
       "dim": "#C6BFB2",
       "error": "#B3413B",
       "warning": "#8A6A18",
-      "success": "#1F7F6E"
+      "success": "#1F7F6E",
+      "lineNumberActive": "#0E4CFF"
     },
     "cool": {
-      "border": "#1E2733",
+      "border": "#25292E",
       "fgStrong": "#E4EAF3",
       "fgMuted": "#8C97A5",
       "fgFaint": "#5F6A79",
@@ -160,11 +166,12 @@
     "bold": "none anywhere",
     "fieldColor": "equals identifier in all three variants",
     "commentPolicy": "comments must stay readable, not faded below the punctuation color",
-    "variantPair": "Deep and Flat are an exact inversion: the same two greys swapped between editor and chrome. Changing one requires mirroring the other.",
+    "variantPair": "Deep and Flat began as an exact inversion -- the same two greys swapped between editor and chrome -- and have since been tuned independently. The build reports a divergence rather than failing on it.",
     "inkDerivation": "Dark punctuation is the identifier color at 86% per channel; the line number is 44%. The build recomputes both when the identifier changes.",
     "gitScale": "Git decoration colors come from the `git` group, not from ui.warning/ui.success. Within a mode the six hued statuses share one (L, C) in oklch and differ only in hue, so any adjustment moves the whole mode, never a single status. 'ignored' is exempt.",
     "coolPalette": "Chalkdraw Cool sits at roughly 140% of Deep's syntax chroma, and strings (#E8C79A) are the only warm hue in the code -- identifiers are a warm-neutral chalk white, everything else is cool. If the palette is retuned, that relationship holds: raise or lower the whole set together and keep strings as the single warm note. The chrome carries a deliberate blue cast (hue ~260 in oklch) and is intentionally darker than Flat. Punctuation sits at the lightness Deep's 86% ink rule would give, so operators read as brightly as identifiers.",
     "coolFields": "Cool is the one variant where field/property/variable (#A4BDD6) differs from the default foreground (#F2F0E8). Deep, Flat and Paper keep them equal.",
-    "coolConstants": "Cool only: language constants (nil, true, false, iota) take the number colour #E4798D rather than keyword blue -- they are constants, and it pulls the most frequent literals in Go out of the blue mass. Struct tags were considered and rejected: the Go grammar gives them no scope of their own, so recolouring them would also recolour raw backtick strings such as embedded SQL."
+    "coolConstants": "Cool only: language constants (nil, true, false, iota) take the number colour #E4798D rather than keyword blue -- they are constants, and it pulls the most frequent literals in Go out of the blue mass. Struct tags were considered and rejected: the Go grammar gives them no scope of their own, so recolouring them would also recolour raw backtick strings such as embedded SQL.",
+    "paperPalette": "Paper's syntax carries the same hues as the dark variants, re-solved for a light ground: each role keeps its oklch hue, its lightness is chosen to hit a contrast target against #EBE6DA, and chroma is pushed as far as the sRGB gamut allows under a per-role ceiling. Chromatic roles sit at ~5:1 (above the 4.5:1 AA bar) rather than the 7:1 the original handoff asked for -- at 7:1 the warm hues go brown and stop reading as their own colour."
   }
 }

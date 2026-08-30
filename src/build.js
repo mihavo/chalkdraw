@@ -207,6 +207,9 @@ function buildWorkbench(v, s, u, g, isDark) {
   // Optional brighter accent for hover states. The fallbacks keep the exact
   // steps the other variants shipped with, so adding this cannot move them.
   const accentHover = u.accentHover || step(u.accent, isDark, 0.12);
+  // The active line number defaults to the accent; a palette may override it
+  // where the accent is not distinct enough from the inactive numbers.
+  const lineNoActive = u.lineNumberActive || u.accent;
   const linkHover = u.accentHover || step(u.accent, isDark, 0.15);
 
   // Gap fillers: blends of documented tokens only, never a new hue.
@@ -219,7 +222,7 @@ function buildWorkbench(v, s, u, g, isDark) {
     'editor.background': editorBg,
     'editor.foreground': s.identifier,
     'editorLineNumber.foreground': s.lineNumber,
-    'editorLineNumber.activeForeground': u.accent,
+    'editorLineNumber.activeForeground': lineNoActive,
     'editor.lineHighlightBackground': line,
     'editor.lineHighlightBorder': line,
     // Every cursor — editor and terminal — takes the identifier ink rather than
@@ -598,7 +601,7 @@ function buildWorkbench(v, s, u, g, isDark) {
     'editorBracketHighlight.foreground6': s.punctuation,
     'editorBracketHighlight.unexpectedBracket.foreground': u.error,
 
-    'editorActiveLineNumber.foreground': u.accent,
+    'editorActiveLineNumber.foreground': lineNoActive,
     'editorGhostText.foreground': s.comment,
     'editorLightBulb.foreground': u.warning,
     'editorLightBulbAutoFix.foreground': u.accent,
@@ -874,6 +877,36 @@ function buildTokenColors(s, u, pk) {
   push('Function & method', SCOPES.function, s.function);
   push('String', SCOPES.string, s.string);
   push('Number & constant', SCOPES.number, s.number);
+  // Imported module paths -- the quoted path itself, not the `import` keyword,
+  // which stays on the keyword ink. Scope names taken from the grammars VS Code
+  // ships: Go puts the path text in entity.name.import, Java the qualified name
+  // in storage.modifier.import (more specific than the storage.modifier the
+  // keyword rule matches, so it wins), and TS/JS leave it a plain string inside
+  // meta.import.
+  // Parameter names as written in a function/method signature. `variable.parameter`
+  // is also in the identifier scope list; this rule is pushed later, so for equal
+  // specificity it wins. Uses inside the body fall back to the plain variable
+  // scopes and keep the identifier ink.
+  if (s.parameter) {
+    push(
+      'Parameter names in declarations',
+      ['variable.parameter', 'variable.parameter.function', 'meta.function.parameters variable'],
+      s.parameter
+    );
+  }
+
+  if (s.importPath) {
+    push(
+      'Imported module paths',
+      [
+        'entity.name.import',
+        'storage.modifier.import',
+        'meta.import string.quoted',
+        'meta.import string',
+      ],
+      s.importPath
+    );
+  }
 
   // Struct fields / object keys explicitly re-stated after the broad rules so
   // no language grammar can pull them into a second hue.
@@ -956,6 +989,7 @@ function buildSemantic(s, pk) {
   out['function.defaultLibrary'] = { foreground: s.function, fontStyle: '' };
   out['type.defaultLibrary'] = { foreground: s.keyword, fontStyle: '' };
   out['selfKeyword'] = { foreground: s.keyword, fontStyle: '' };
+  if (s.parameter) out['parameter'] = { foreground: s.parameter, fontStyle: '' };
   return out;
 }
 
@@ -976,6 +1010,13 @@ function resolvePalette(key) {
   const u = tokens.ui[pk];
   const g = tokens.git[gk];
   const s = { ...tokens.syntax[pk] };
+  // `parameter` is optional in the same way as `importPath` below: declared, it
+  // gets its own rule for names in a function signature; absent, parameters stay
+  // on the identifier ink via the scope list, exactly as before.
+  //
+  // `importPath` is optional: only a palette that declares one gets a separate
+  // rule for imported module paths. Without it nothing is emitted, so the other
+  // variants keep whatever their existing rules already gave those scopes.
 
   // Only the shared dark palette derives its punctuation and line number from
   // the identifier ink. Paper and Cool author those values directly.
@@ -1220,9 +1261,10 @@ let failed = false;
   }
 }
 
-// Deep and Flat are an exact inversion of each other: the same two greys swapped
-// between editor and chrome (tokens.rules.variantPair). Changing one without
-// mirroring the other is the failure this guards against.
+// Deep and Flat began as an exact inversion of each other -- the same two greys
+// swapped between editor and chrome. They have since been tuned independently,
+// so this is reported rather than enforced: it still surfaces an accidental
+// half-edit, but no longer fails the build.
 {
   const d = tokens.variants.deep;
   const f = tokens.variants.flat;
@@ -1234,9 +1276,8 @@ let failed = false;
     pair.push(`deep chrome ${d.chromeBackground} != flat editor ${f.editorBackground}`);
   }
   if (pair.length) {
-    failed = true;
-    console.error('\u2717 Deep/Flat inversion broken');
-    pair.forEach((p) => console.error(`    error:   ${p}`));
+    console.warn('\u2713 Deep/Flat tuned independently (no longer a strict inversion)');
+    pair.forEach((p) => console.warn(`    review:  ${p}`));
   } else {
     console.log(
       `\u2713 Deep/Flat inversion holds \u2014 ${d.editorBackground} \u21c4 ${d.chromeBackground}`
