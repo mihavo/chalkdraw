@@ -6,7 +6,7 @@
   "colors": {
     "editor.background": "#1A1D21",
     "editor.foreground": "#ABBFD6",
-    "editorLineNumber.foreground": "#4B545E",
+    "editorLineNumber.foreground": "#5E6976",
     "editorLineNumber.activeForeground": "#5E97FF",
     "editor.lineHighlightBackground": "#22262B",
     "editor.lineHighlightBorder": "#22262B",
@@ -325,12 +325,12 @@
     "toolbar.activeBackground": "#22262B",
     "profileBadge.background": "#0E1013",
     "profileBadge.foreground": "#E4EAF3",
-    "editorBracketHighlight.foreground1": "#93A4B8",
-    "editorBracketHighlight.foreground2": "#93A4B8",
-    "editorBracketHighlight.foreground3": "#93A4B8",
-    "editorBracketHighlight.foreground4": "#93A4B8",
-    "editorBracketHighlight.foreground5": "#93A4B8",
-    "editorBracketHighlight.foreground6": "#93A4B8",
+    "editorBracketHighlight.foreground1": "#788696",
+    "editorBracketHighlight.foreground2": "#788696",
+    "editorBracketHighlight.foreground3": "#788696",
+    "editorBracketHighlight.foreground4": "#788696",
+    "editorBracketHighlight.foreground5": "#788696",
+    "editorBracketHighlight.foreground6": "#788696",
     "editorBracketHighlight.unexpectedBracket.foreground": "#E06C75",
     "editorActiveLineNumber.foreground": "#5E97FF",
     "editorGhostText.foreground": "#6D7681",
@@ -383,7 +383,7 @@
     "symbolIcon.constantForeground": "#D19B6C",
     "symbolIcon.stringForeground": "#75BF85",
     "symbolIcon.keywordForeground": "#F29790",
-    "symbolIcon.operatorForeground": "#93A4B8",
+    "symbolIcon.operatorForeground": "#788696",
     "debugIcon.startForeground": "#4FC9B0",
     "debugIcon.continueForeground": "#5E97FF",
     "debugIcon.pauseForeground": "#5E97FF",
@@ -594,7 +594,7 @@
         "punctuation.accessor"
       ],
       "settings": {
-        "foreground": "#93A4B8"
+        "foreground": "#788696"
       }
     },
     {
@@ -711,7 +711,7 @@
         "meta.import string"
       ],
       "settings": {
-        "foreground": "#F5D39C"
+        "foreground": "#98CDDF"
       }
     },
     {
@@ -785,7 +785,7 @@
         "meta.template.expression"
       ],
       "settings": {
-        "foreground": "#93A4B8"
+        "foreground": "#788696"
       }
     },
     {
@@ -877,7 +877,7 @@
         "beginning.punctuation.definition.list.markdown"
       ],
       "settings": {
-        "foreground": "#93A4B8"
+        "foreground": "#788696"
       }
     },
     {
@@ -993,7 +993,7 @@
       "fontStyle": ""
     },
     "operator": {
-      "foreground": "#93A4B8",
+      "foreground": "#788696",
       "fontStyle": ""
     },
     "*.declaration": {

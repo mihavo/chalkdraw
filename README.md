@@ -94,7 +94,7 @@ use { 'mihavo/chalkdraw', config = function() vim.cmd.colorscheme('chalkdraw-dee
 | Role | Dark | Paper |
 | --- | --- | --- |
 | Keywords, storage, control flow | `#f29790` | `#b7272d` |
-| Imported module paths | `#f5d39c` | `#80612c` |
+| Imported module paths | `#98cddf` | `#01535e` |
 | Types, classes, packages | `#4fc9b0` | `#006d5c` |
 | Functions and methods | `#7aa2f7` | `#2c59c8` |
 | Strings | `#75bf85` | `#29743f` |
@@ -102,9 +102,9 @@ use { 'mihavo/chalkdraw', config = function() vim.cmd.colorscheme('chalkdraw-dee
 | Named constants, enum members | `#d19b6c` | `#7c3e2e` |
 | Variables, fields, properties | `#abbfd6` | `#202e3e` |
 | Parameter names in declarations | `#ffc491` | `#985500` |
-| Operators, brackets, separators | `#93a4b8` | `#576474` |
+| Operators, brackets, separators | `#788696` | `#576474` |
 | Comments | `#6d7681` | `#4e5d6f` |
-| Line numbers | `#4b545e` | `#798593` |
+| Line numbers | `#5e6976` | `#798593` |
 | Cursor | `#abbfd6` | `#202e3e` |
 | Rails, active marks | `#7aa2f7` | `#2e6da8` |
 | Editor background | `#17191b` | `#ebe6da` |

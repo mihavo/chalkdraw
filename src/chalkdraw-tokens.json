@@ -45,10 +45,10 @@
       "number": "#E2B3ED",
       "comment": "#6D7681",
       "identifier": "#ABBFD6",
-      "punctuation": "#93A4B8",
+      "punctuation": "#788696",
       "field": "#ABBFD6",
-      "lineNumber": "#4B545E",
-      "importPath": "#F5D39C",
+      "lineNumber": "#5E6976",
+      "importPath": "#98CDDF",
       "parameter": "#FFC491",
       "constant": "#D19B6C"
     },
@@ -63,7 +63,7 @@
       "punctuation": "#576474",
       "field": "#202E3E",
       "lineNumber": "#798593",
-      "importPath": "#80612C",
+      "importPath": "#01535E",
       "parameter": "#985500",
       "constant": "#7C3E2E"
     }
