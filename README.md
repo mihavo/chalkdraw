@@ -94,11 +94,12 @@ use { 'mihavo/chalkdraw', config = function() vim.cmd.colorscheme('chalkdraw-dee
 | Role | Dark | Paper |
 | --- | --- | --- |
 | Keywords, storage, control flow | `#f29790` | `#b7272d` |
-| Imported module paths | `#ffd084` | `#885e00` |
+| Imported module paths | `#f5d39c` | `#80612c` |
 | Types, classes, packages | `#4fc9b0` | `#006d5c` |
 | Functions and methods | `#7aa2f7` | `#2c59c8` |
-| Strings | `#ede7b2` | `#726700` |
-| Numbers, constants | `#a0d6a6` | `#376d00` |
+| Strings | `#75bf85` | `#29743f` |
+| Numbers | `#e2b3ed` | `#7c5186` |
+| Named constants, enum members | `#d19b6c` | `#7c3e2e` |
 | Variables, fields, properties | `#abbfd6` | `#202e3e` |
 | Parameter names in declarations | `#ffc491` | `#985500` |
 | Operators, brackets, separators | `#93a4b8` | `#576474` |

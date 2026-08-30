@@ -32,7 +32,8 @@
       "statusBarBackground": "#13161A",
       "currentLine": "#22262B",
       "palette": "cool",
-      "gitPalette": "dark"
+      "gitPalette": "dark",
+      "syntaxPalette": "dark"
     }
   },
   "syntax": {
@@ -40,42 +41,31 @@
       "keyword": "#F29790",
       "type": "#4FC9B0",
       "function": "#7AA2F7",
-      "string": "#EDE7B2",
-      "number": "#A0D6A6",
+      "string": "#75BF85",
+      "number": "#E2B3ED",
       "comment": "#6D7681",
       "identifier": "#ABBFD6",
       "punctuation": "#93A4B8",
       "field": "#ABBFD6",
       "lineNumber": "#4B545E",
-      "importPath": "#FFD084",
-      "parameter": "#FFC491"
+      "importPath": "#F5D39C",
+      "parameter": "#FFC491",
+      "constant": "#D19B6C"
     },
     "light": {
       "keyword": "#B7272D",
       "type": "#006D5C",
       "function": "#2C59C8",
-      "string": "#726700",
-      "number": "#376D00",
+      "string": "#29743F",
+      "number": "#7C5186",
       "comment": "#4E5D6F",
       "identifier": "#202E3E",
       "punctuation": "#576474",
       "field": "#202E3E",
       "lineNumber": "#798593",
-      "importPath": "#885E00",
-      "parameter": "#985500"
-    },
-    "cool": {
-      "keyword": "#5E97FF",
-      "type": "#2FD8B6",
-      "function": "#B79CE8",
-      "string": "#E8C79A",
-      "number": "#E4798D",
-      "comment": "#5B6675",
-      "identifier": "#F2F0E8",
-      "punctuation": "#C3CFDF",
-      "field": "#A4BDD6",
-      "lineNumber": "#464E59",
-      "parameter": "#FFC491"
+      "importPath": "#80612C",
+      "parameter": "#985500",
+      "constant": "#7C3E2E"
     }
   },
   "ui": {

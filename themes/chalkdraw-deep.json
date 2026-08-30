@@ -289,7 +289,7 @@
     "settings.checkboxBorder": "#282A2D",
     "textLink.foreground": "#7AA2F7",
     "textLink.activeForeground": "#8EB0F8",
-    "textPreformat.foreground": "#EDE7B2",
+    "textPreformat.foreground": "#75BF85",
     "textBlockQuote.background": "#1B1D1F",
     "textBlockQuote.border": "#282A2D",
     "textCodeBlock.background": "#1B1D1F",
@@ -311,7 +311,7 @@
     "charts.yellow": "#E5C07B",
     "charts.green": "#4FC9B0",
     "charts.purple": "#7AA2F7",
-    "charts.orange": "#EDE7B2",
+    "charts.orange": "#75BF85",
     "charts.foreground": "#8B939C",
     "charts.lines": "#282A2D",
     "disabledForeground": "#6D7681",
@@ -379,9 +379,9 @@
     "symbolIcon.variableForeground": "#ABBFD6",
     "symbolIcon.fieldForeground": "#ABBFD6",
     "symbolIcon.propertyForeground": "#ABBFD6",
-    "symbolIcon.enumeratorMemberForeground": "#A0D6A6",
-    "symbolIcon.constantForeground": "#A0D6A6",
-    "symbolIcon.stringForeground": "#EDE7B2",
+    "symbolIcon.enumeratorMemberForeground": "#D19B6C",
+    "symbolIcon.constantForeground": "#D19B6C",
+    "symbolIcon.stringForeground": "#75BF85",
     "symbolIcon.keywordForeground": "#F29790",
     "symbolIcon.operatorForeground": "#93A4B8",
     "debugIcon.startForeground": "#4FC9B0",
@@ -399,8 +399,8 @@
     "debugIcon.breakpointUnverifiedForeground": "#6D7681",
     "debugTokenExpression.name": "#ABBFD6",
     "debugTokenExpression.value": "#ABBFD6",
-    "debugTokenExpression.string": "#EDE7B2",
-    "debugTokenExpression.number": "#A0D6A6",
+    "debugTokenExpression.string": "#75BF85",
+    "debugTokenExpression.number": "#E2B3ED",
     "debugTokenExpression.boolean": "#F29790",
     "debugTokenExpression.type": "#4FC9B0",
     "debugTokenExpression.error": "#E06C75",
@@ -539,7 +539,7 @@
     "editorCommentsWidget.rangeActiveBackground": "#7AA2F729",
     "terminal.ansiBlack": "#1B1D1F",
     "terminal.ansiRed": "#E06C75",
-    "terminal.ansiGreen": "#A0D6A6",
+    "terminal.ansiGreen": "#75BF85",
     "terminal.ansiYellow": "#E5C07B",
     "terminal.ansiBlue": "#F29790",
     "terminal.ansiMagenta": "#7AA2F7",
@@ -547,7 +547,7 @@
     "terminal.ansiWhite": "#ABBFD6",
     "terminal.ansiBrightBlack": "#3A3D41",
     "terminal.ansiBrightRed": "#E78C93",
-    "terminal.ansiBrightGreen": "#B5DFBA",
+    "terminal.ansiBrightGreen": "#93CDA0",
     "terminal.ansiBrightYellow": "#EBCE98",
     "terminal.ansiBrightBlue": "#F5AEA8",
     "terminal.ansiBrightMagenta": "#97B6F9",
@@ -668,19 +668,27 @@
         "string.regexp"
       ],
       "settings": {
-        "foreground": "#EDE7B2"
+        "foreground": "#75BF85"
       }
     },
     {
-      "name": "Number & constant",
+      "name": "Number",
       "scope": [
         "constant.numeric",
         "constant.other.color",
-        "variable.other.constant",
         "constant.character.escape"
       ],
       "settings": {
-        "foreground": "#A0D6A6"
+        "foreground": "#E2B3ED"
+      }
+    },
+    {
+      "name": "Named constants & enum members",
+      "scope": [
+        "variable.other.constant"
+      ],
+      "settings": {
+        "foreground": "#D19B6C"
       }
     },
     {
@@ -703,7 +711,7 @@
         "meta.import string"
       ],
       "settings": {
-        "foreground": "#FFD084"
+        "foreground": "#F5D39C"
       }
     },
     {
@@ -737,7 +745,7 @@
         "keyword.other.unit"
       ],
       "settings": {
-        "foreground": "#A0D6A6"
+        "foreground": "#E2B3ED"
       }
     },
     {
@@ -746,7 +754,7 @@
         "string.quoted.double.json"
       ],
       "settings": {
-        "foreground": "#EDE7B2"
+        "foreground": "#75BF85"
       }
     },
     {
@@ -838,7 +846,7 @@
         "markup.raw"
       ],
       "settings": {
-        "foreground": "#EDE7B2"
+        "foreground": "#75BF85"
       }
     },
     {
@@ -873,12 +881,12 @@
       }
     },
     {
-      "name": "Markdown — diff added -> number",
+      "name": "Markdown — diff added -> string",
       "scope": [
         "markup.inserted"
       ],
       "settings": {
-        "foreground": "#A0D6A6"
+        "foreground": "#75BF85"
       }
     },
     {
@@ -969,15 +977,15 @@
       "fontStyle": ""
     },
     "enumMember": {
-      "foreground": "#A0D6A6",
+      "foreground": "#D19B6C",
       "fontStyle": ""
     },
     "number": {
-      "foreground": "#A0D6A6",
+      "foreground": "#E2B3ED",
       "fontStyle": ""
     },
     "string": {
-      "foreground": "#EDE7B2",
+      "foreground": "#75BF85",
       "fontStyle": ""
     },
     "comment": {

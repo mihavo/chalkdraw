@@ -112,7 +112,7 @@ function M.build(p, opts)
 
     -------------------------------------------------------------- syntax -----
     Comment = { fg = s.comment },
-    Constant = { fg = s.number },
+    Constant = { fg = s.constant or s.number },
     String = { fg = s.string },
     Character = { fg = s.string },
     Number = { fg = s.number },
@@ -215,7 +215,7 @@ function M.build(p, opts)
     ['@comment.todo'] = u.warning,
     ['@comment.note'] = u.accent,
 
-    ['@constant'] = s.number,
+    ['@constant'] = s.constant or s.number,
     ['@constant.builtin'] = s.keyword,
     ['@constant.macro'] = s.keyword,
     ['@number'] = s.number,
@@ -336,7 +336,7 @@ function M.build(p, opts)
     ['@lsp.type.parameter'] = s.parameter or s.field,
     ['@lsp.type.variable'] = s.identifier,
     ['@lsp.type.property'] = s.field,
-    ['@lsp.type.enumMember'] = s.number,
+    ['@lsp.type.enumMember'] = s.constant or s.number,
     ['@lsp.type.function'] = s['function'],
     ['@lsp.type.method'] = s['function'],
     ['@lsp.type.macro'] = s['function'],
@@ -426,7 +426,7 @@ function M.build(p, opts)
     CmpItemKindStruct = { fg = s.type },
     CmpItemKindModule = { fg = s.type },
     CmpItemKindKeyword = { fg = s.keyword },
-    CmpItemKindConstant = { fg = s.number },
+    CmpItemKindConstant = { fg = s.constant or s.number },
     CmpItemKindSnippet = { fg = u.fgMuted },
     BlinkCmpMenu = { fg = s.identifier, bg = chrome },
     BlinkCmpMenuBorder = { fg = u.border, bg = chrome },
@@ -513,9 +513,9 @@ function M.terminal(p)
     return blend(hex, dark and '#FFFFFF' or '#000000', 0.22)
   end
   return {
-    p.shell.chrome, u.error, s.number, u.warning,
+    p.shell.chrome, u.error, s.string, u.warning,
     s.keyword, s['function'], s.type, s.identifier,
-    dark and u.dim or u.fgFaint, step(u.error), step(s.number), step(u.warning),
+    dark and u.dim or u.fgFaint, step(u.error), step(s.string), step(u.warning),
     step(s.keyword), step(s['function']), step(s.type),
     dark and u.fgStrong or u.fgTree,
   }

@@ -132,7 +132,6 @@ const SCOPES = {
   number: [
     'constant.numeric',
     'constant.other.color',
-    'variable.other.constant',
     'constant.character.escape',
   ],
   comment: ['comment', 'punctuation.definition.comment'],
@@ -168,7 +167,7 @@ const markdownRules = (s) => [
   { scope: ['markup.underline.link', 'string.other.link', 'markup.link'], role: 'links -> function', color: s.function },
   { scope: ['markup.quote', 'beginning.punctuation.definition.quote.markdown'], role: 'block quote -> comment', color: s.comment },
   { scope: ['markup.list', 'beginning.punctuation.definition.list.markdown'], role: 'list bullets -> punctuation', color: s.punctuation },
-  { scope: ['markup.inserted'], role: 'diff added -> number', color: s.number },
+  { scope: ['markup.inserted'], role: 'diff added -> string', color: s.string },
   { scope: ['markup.deleted'], role: 'diff removed -> error' },
 ];
 
@@ -189,7 +188,7 @@ const SEMANTIC = {
   parameter: 'field',
   variable: 'field',
   member: 'field',
-  enumMember: 'number',
+  enumMember: 'constant',
   number: 'number',
   string: 'string',
   comment: 'comment',
@@ -651,8 +650,8 @@ function buildWorkbench(v, s, u, g, isDark) {
     'symbolIcon.variableForeground': s.identifier,
     'symbolIcon.fieldForeground': s.identifier,
     'symbolIcon.propertyForeground': s.identifier,
-    'symbolIcon.enumeratorMemberForeground': s.number,
-    'symbolIcon.constantForeground': s.number,
+    'symbolIcon.enumeratorMemberForeground': s.constant || s.number,
+    'symbolIcon.constantForeground': s.constant || s.number,
     'symbolIcon.stringForeground': s.string,
     'symbolIcon.keywordForeground': s.keyword,
     'symbolIcon.operatorForeground': s.punctuation,
@@ -829,7 +828,9 @@ function buildWorkbench(v, s, u, g, isDark) {
     // --- terminal ANSI (derived — see README "Terminal palette") -----------
     'terminal.ansiBlack': chrome,
     'terminal.ansiRed': u.error,
-    'terminal.ansiGreen': s.number,
+    // Numbers are not necessarily green, so the ANSI green slot follows the
+    // string ink -- the one role guaranteed to be green in every palette.
+    'terminal.ansiGreen': s.string,
     'terminal.ansiYellow': u.warning,
     'terminal.ansiBlue': s.keyword,
     'terminal.ansiMagenta': s.function,
@@ -837,7 +838,7 @@ function buildWorkbench(v, s, u, g, isDark) {
     'terminal.ansiWhite': s.identifier,
     'terminal.ansiBrightBlack': isDark ? u.dim : u.fgFaint,
     'terminal.ansiBrightRed': step(u.error, isDark),
-    'terminal.ansiBrightGreen': step(s.number, isDark),
+    'terminal.ansiBrightGreen': step(s.string, isDark),
     'terminal.ansiBrightYellow': step(u.warning, isDark),
     'terminal.ansiBrightBlue': step(s.keyword, isDark),
     'terminal.ansiBrightMagenta': step(s.function, isDark),
@@ -876,7 +877,11 @@ function buildTokenColors(s, u, pk) {
   push('Type, class, namespace', SCOPES.type, s.type);
   push('Function & method', SCOPES.function, s.function);
   push('String', SCOPES.string, s.string);
-  push('Number & constant', SCOPES.number, s.number);
+  push('Number', SCOPES.number, s.number);
+  // Named constants and enum members. Split from `number` so a palette can
+  // colour literals and the identifiers that hold them differently; absent a
+  // `constant` ink they stay on the number colour, as they always did.
+  push('Named constants & enum members', ['variable.other.constant'], s.constant || s.number);
   // Imported module paths -- the quoted path itself, not the `import` keyword,
   // which stays on the keyword ink. Scope names taken from the grammars VS Code
   // ships: Go puts the path text in entity.name.import, Java the qualified name
@@ -1003,13 +1008,17 @@ function resolvePalette(key) {
   const v = tokens.variants[key];
   const isDark = v.kind === 'dark';
 
-  // A variant may name its own syntax/ui palettes (Chalkdraw Cool does);
-  // otherwise it takes the shared dark or light set.
+  // A variant may name its own ui palette (Chalkdraw Cool does); otherwise it
+  // takes the shared dark or light set. `syntaxPalette` splits the two, so a
+  // variant can keep its own chrome while sharing another variant's syntax --
+  // which is what Cool does: blue-cast UI, the common dark inks in the editor.
   const pk = v.palette || (isDark ? 'dark' : 'light');
+  const sk = v.syntaxPalette || pk;
   const gk = v.gitPalette || (isDark ? 'dark' : 'light');
   const u = tokens.ui[pk];
   const g = tokens.git[gk];
-  const s = { ...tokens.syntax[pk] };
+  if (!tokens.syntax[sk]) throw new Error(`variant '${key}' names a missing syntax palette '${sk}'`);
+  const s = { ...tokens.syntax[sk] };
   // `parameter` is optional in the same way as `importPath` below: declared, it
   // gets its own rule for names in a function signature; absent, parameters stay
   // on the identifier ink via the scope list, exactly as before.
@@ -1019,14 +1028,16 @@ function resolvePalette(key) {
   // variants keep whatever their existing rules already gave those scopes.
 
   // Only the shared dark palette derives its punctuation and line number from
-  // the identifier ink. Paper and Cool author those values directly.
-  if (pk === 'dark') {
+  // the identifier ink. Paper authors those values directly.
+  if (sk === 'dark') {
     s.field = s.identifier;
     for (const [role, factor] of Object.entries(INK_DERIVATION)) {
       s[role] = shade(s.identifier, factor);
     }
   }
-  return { v, isDark, s, u, g, pk };
+  // `pk` is the syntax palette from here on: it is what the token rules and the
+  // invariant checks key off, and Cool's chrome is already resolved into `u`.
+  return { v, isDark, s, u, g, pk: sk };
 }
 
 function buildTheme(key) {
