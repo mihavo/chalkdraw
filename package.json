@@ -2,7 +2,7 @@
   "name": "chalkdraw",
   "displayName": "Chalkdraw",
   "description": "A distinct chalkboard-inspired theme in three variants \u2014 Deep and Flat (dark) and Paper (light) \u2014 designed to minimize eye strain.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "michaelvolakis",
   "license": "MIT",
   "icon": "resources/icon/chalkdraw.png",
@@ -52,6 +52,11 @@
         "label": "Chalkdraw Paper",
         "uiTheme": "vs",
         "path": "./themes/chalkdraw-paper.json"
+      },
+      {
+        "label": "Chalkdraw Cool",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chalkdraw-cool.json"
       }
     ]
   }

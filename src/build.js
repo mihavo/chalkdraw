@@ -59,6 +59,18 @@ const mix = (a, b, t) => {
 const shade = (hex, factor) => rgb2hex(hex2rgb(hex).map((v) => v * factor));
 
 /**
+ * Chalkdraw Cool (tokens.rules.coolPalette) sits at roughly 140% of Deep's
+ * syntax chroma, and strings (#E8C79A) are the only warm hue in the code --
+ * identifiers are a warm-neutral chalk white and everything else is cool.
+ * If the palette is retuned, that relationship holds: move the whole set
+ * together and keep strings as the single warm note.
+ *
+ * Cool is also the one variant where `field` differs from `identifier`
+ * (tokens.rules.coolFields); the other three keep them equal, which check()
+ * still enforces.
+ */
+
+/**
  * Ink derivation: dark punctuation and line numbers are not chosen
  * independently — they are the identifier color at 86% and 44% per channel.
  * Deriving them here rather than hardcoding keeps the three moving together
@@ -173,10 +185,10 @@ const SEMANTIC = {
   function: 'function',
   method: 'function',
   macro: 'function',
-  property: 'identifier',
-  parameter: 'identifier',
-  variable: 'identifier',
-  member: 'identifier',
+  property: 'field',
+  parameter: 'field',
+  variable: 'field',
+  member: 'field',
   enumMember: 'number',
   number: 'number',
   string: 'string',
@@ -190,6 +202,12 @@ function buildWorkbench(v, s, u, g, isDark) {
   const editorBg = v.editorBackground;
   const chrome = v.chromeBackground;
   const line = v.currentLine;
+  // Cool sinks the status bar below the panels; the others share `chrome`.
+  const statusBg = v.statusBarBackground || chrome;
+  // Optional brighter accent for hover states. The fallbacks keep the exact
+  // steps the other variants shipped with, so adding this cannot move them.
+  const accentHover = u.accentHover || step(u.accent, isDark, 0.12);
+  const linkHover = u.accentHover || step(u.accent, isDark, 0.15);
 
   // Gap fillers: blends of documented tokens only, never a new hue.
   const surfaceRaised = mix(chrome, u.fgFaint, 0.06); // hovers, dropdowns
@@ -349,20 +367,20 @@ function buildWorkbench(v, s, u, g, isDark) {
     'terminalCursor.foreground': s.identifier,
     'terminal.selectionBackground': accentSoft,
 
-    'statusBar.background': chrome,
+    'statusBar.background': statusBg,
     'statusBar.foreground': u.fgMuted,
     'statusBar.border': u.border,
-    'statusBar.noFolderBackground': chrome,
+    'statusBar.noFolderBackground': statusBg,
     'statusBar.noFolderForeground': u.fgMuted,
-    'statusBar.debuggingBackground': chrome,
+    'statusBar.debuggingBackground': statusBg,
     'statusBar.debuggingForeground': u.warning,
     'statusBarItem.hoverBackground': surfaceRaised,
     'statusBarItem.activeBackground': line,
     'statusBarItem.remoteBackground': u.accent,
     'statusBarItem.remoteForeground': isDark ? v.editorBackground : '#FFFFFF',
-    'statusBarItem.errorBackground': chrome,
+    'statusBarItem.errorBackground': statusBg,
     'statusBarItem.errorForeground': u.error,
-    'statusBarItem.warningBackground': chrome,
+    'statusBarItem.warningBackground': statusBg,
     'statusBarItem.warningForeground': u.warning,
     'statusBarItem.prominentBackground': surfaceSunken,
     'statusBarItem.prominentForeground': u.fgStrong,
@@ -410,7 +428,7 @@ function buildWorkbench(v, s, u, g, isDark) {
 
     'button.background': u.accent,
     'button.foreground': isDark ? v.editorBackground : '#FFFFFF',
-    'button.hoverBackground': step(u.accent, isDark, 0.12),
+    'button.hoverBackground': accentHover,
     'button.secondaryBackground': surfaceRaised,
     'button.secondaryForeground': u.fgStrong,
     'button.secondaryHoverBackground': mix(surfaceRaised, u.fgFaint, 0.1),
@@ -526,7 +544,7 @@ function buildWorkbench(v, s, u, g, isDark) {
     'settings.checkboxBackground': surfaceSunken,
     'settings.checkboxBorder': u.border,
     'textLink.foreground': u.accent,
-    'textLink.activeForeground': step(u.accent, isDark, 0.15),
+    'textLink.activeForeground': linkHover,
     'textPreformat.foreground': s.string,
     'textBlockQuote.background': chrome,
     'textBlockQuote.border': u.border,
@@ -540,7 +558,7 @@ function buildWorkbench(v, s, u, g, isDark) {
     'welcomePage.progress.foreground': u.accent,
     'extensionButton.prominentBackground': u.accent,
     'extensionButton.prominentForeground': isDark ? v.editorBackground : '#FFFFFF',
-    'extensionButton.prominentHoverBackground': step(u.accent, isDark, 0.12),
+    'extensionButton.prominentHoverBackground': accentHover,
     'extensionBadge.remoteBackground': u.accent,
     'extensionIcon.starForeground': u.warning,
     'extensionIcon.verifiedForeground': u.success,
@@ -701,7 +719,7 @@ function buildWorkbench(v, s, u, g, isDark) {
     'sideBarTitle.border': u.border,
     'statusBar.focusBorder': u.accent,
     'statusBarItem.focusBorder': u.accent,
-    'statusBarItem.remoteHoverBackground': step(u.accent, isDark, 0.12),
+    'statusBarItem.remoteHoverBackground': accentHover,
     'statusBarItem.offlineBackground': u.error,
     'statusBarItem.offlineForeground': isDark ? v.editorBackground : '#FFFFFF',
     'statusBarItem.compactHoverBackground': surfaceRaised,
@@ -730,7 +748,7 @@ function buildWorkbench(v, s, u, g, isDark) {
 
     'extensionButton.background': u.accent,
     'extensionButton.foreground': isDark ? v.editorBackground : '#FFFFFF',
-    'extensionButton.hoverBackground': step(u.accent, isDark, 0.12),
+    'extensionButton.hoverBackground': accentHover,
     'extensionButton.border': u.border,
     'extensionIcon.preReleaseForeground': s.function,
     'extensionIcon.sponsorForeground': u.error,
@@ -850,7 +868,7 @@ function buildTokenColors(s, u) {
 
   push('Comment', SCOPES.comment, s.comment);
   push('Punctuation & operators', SCOPES.punctuation, s.punctuation);
-  push('Identifier — variables, params, fields, object keys', SCOPES.identifier, s.identifier);
+  push('Identifier — variables, params, fields, object keys', SCOPES.identifier, s.field);
   push('Keyword & storage', SCOPES.keyword, s.keyword);
   push('Type, class, namespace', SCOPES.type, s.type);
   push('Function & method', SCOPES.function, s.function);
@@ -870,11 +888,11 @@ function buildTokenColors(s, u) {
       'support.type.property-name.json',
       'entity.name.variable.field',
     ],
-    s.identifier
+    s.field
   );
 
   // Language spot-fixes that keep every sample language on-palette.
-  push('CSS property names', ['support.type.property-name.css'], s.identifier);
+  push('CSS property names', ['support.type.property-name.css'], s.field);
   push('CSS values & units', ['support.constant.property-value.css', 'keyword.other.unit'], s.number);
   push('JSON string values', ['string.quoted.double.json'], s.string);
   push('SQL keywords', ['keyword.other.sql', 'keyword.other.DML'], s.keyword);
@@ -913,7 +931,7 @@ function buildSemantic(s) {
   }
   // Go/Rust specifics.
   out['*.declaration'] = { fontStyle: '' };
-  out['variable.readonly'] = { foreground: s.identifier, fontStyle: '' };
+  out['variable.readonly'] = { foreground: s.field, fontStyle: '' };
   out['variable.readonly.defaultLibrary'] = { foreground: s.keyword, fontStyle: '' };
   out['function.defaultLibrary'] = { foreground: s.function, fontStyle: '' };
   out['type.defaultLibrary'] = { foreground: s.keyword, fontStyle: '' };
@@ -930,23 +948,28 @@ function buildSemantic(s) {
 function resolvePalette(key) {
   const v = tokens.variants[key];
   const isDark = v.kind === 'dark';
-  const u = tokens.ui[isDark ? 'dark' : 'light'];
-  const g = tokens.git[isDark ? 'dark' : 'light'];
 
-  // Paper's palette is authored directly; the dark palette derives its
-  // punctuation and line number from the identifier ink.
-  const s = { ...tokens.syntax[isDark ? 'dark' : 'light'] };
-  if (isDark) {
+  // A variant may name its own syntax/ui palettes (Chalkdraw Cool does);
+  // otherwise it takes the shared dark or light set.
+  const pk = v.palette || (isDark ? 'dark' : 'light');
+  const gk = v.gitPalette || (isDark ? 'dark' : 'light');
+  const u = tokens.ui[pk];
+  const g = tokens.git[gk];
+  const s = { ...tokens.syntax[pk] };
+
+  // Only the shared dark palette derives its punctuation and line number from
+  // the identifier ink. Paper and Cool author those values directly.
+  if (pk === 'dark') {
     s.field = s.identifier;
     for (const [role, factor] of Object.entries(INK_DERIVATION)) {
       s[role] = shade(s.identifier, factor);
     }
   }
-  return { v, isDark, s, u, g };
+  return { v, isDark, s, u, g, pk };
 }
 
 function buildTheme(key) {
-  const { v, isDark, s, u, g } = resolvePalette(key);
+  const { v, isDark, s, u, g, pk } = resolvePalette(key);
 
   return {
     $schema: 'vscode://schemas/color-theme',
@@ -954,6 +977,7 @@ function buildTheme(key) {
     type: isDark ? 'dark' : 'light',
     semanticHighlighting: true,
     __syntax: s,
+    __palette: pk,
     colors: buildWorkbench(v, s, u, g, isDark),
     tokenColors: buildTokenColors(s, u),
     semanticTokenColors: buildSemantic(s),
@@ -1105,12 +1129,16 @@ const contrast = (a, b) => {
 function check(key, theme) {
   const v = tokens.variants[key];
   const isDark = v.kind === 'dark';
+  const pk = theme.__palette;
   const s = theme.__syntax;
   const bg = v.editorBackground;
   const errors = [];
   const warnings = [];
 
-  if (s.field !== s.identifier) {
+  // Deep, Flat and Paper keep fields on the identifier ink. Cool deliberately
+  // splits them (tokens.rules.coolFields), so the rule is scoped to the
+  // palettes that actually declare it.
+  if (pk !== 'cool' && s.field !== s.identifier) {
     errors.push(`field color ${s.field} differs from identifier ${s.identifier}`);
   }
   const styles = [
@@ -1122,7 +1150,7 @@ function check(key, theme) {
   // chalkdraw-tokens.json records punctuation/lineNumber hexes as well as the
   // derivation factors. Where the two disagree the derivation wins, but the
   // divergence is surfaced rather than swallowed.
-  if (isDark) {
+  if (pk === 'dark') {
     for (const [role, factor] of Object.entries(INK_DERIVATION)) {
       const derived = shade(s.identifier, factor);
       const recorded = (tokens.syntax.dark[role] || '').toUpperCase();
@@ -1206,6 +1234,7 @@ for (const key of Object.keys(tokens.variants)) {
   const theme = buildTheme(key);
   const { errors, warnings } = check(key, theme);
   delete theme.__syntax;
+  delete theme.__palette;
   const out = path.join(ROOT, 'themes', `chalkdraw-${key}.json`);
   fs.writeFileSync(out, JSON.stringify(theme, null, 2) + '\n');
 

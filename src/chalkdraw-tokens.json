@@ -23,6 +23,16 @@
       "editorBackground": "#EBE6DA",
       "chromeBackground": "#E2DCCE",
       "currentLine": "#DFD8C8"
+    },
+    "cool": {
+      "kind": "dark",
+      "label": "Chalkdraw Cool",
+      "editorBackground": "#1B1D20",
+      "chromeBackground": "#17191C",
+      "statusBarBackground": "#141619",
+      "currentLine": "#25272A",
+      "palette": "cool",
+      "gitPalette": "dark"
     }
   },
   "syntax": {
@@ -33,10 +43,10 @@
       "string": "#CE9178",
       "number": "#B5CEA8",
       "comment": "#6D7681",
-      "identifier": "#E8DCCF",
-      "punctuation": "#C8BDB2",
-      "field": "#E8DCCF",
-      "lineNumber": "#66615B"
+      "identifier": "#A4BDD6",
+      "punctuation": "#8DA3B8",
+      "field": "#A4BDD6",
+      "lineNumber": "#48535E"
     },
     "light": {
       "keyword": "#0B4EA8",
@@ -49,6 +59,18 @@
       "punctuation": "#5C564D",
       "field": "#1E1C18",
       "lineNumber": "#8E8779"
+    },
+    "cool": {
+      "keyword": "#5E97FF",
+      "type": "#2FD8B6",
+      "function": "#B79CE8",
+      "string": "#E8C79A",
+      "number": "#E4798D",
+      "comment": "#5B6675",
+      "identifier": "#F2F0E8",
+      "punctuation": "#C3CFDF",
+      "field": "#A4BDD6",
+      "lineNumber": "#464E59"
     }
   },
   "ui": {
@@ -75,6 +97,19 @@
       "error": "#B3413B",
       "warning": "#8A6A18",
       "success": "#1F7F6E"
+    },
+    "cool": {
+      "border": "#23262C",
+      "fgStrong": "#E4EAF3",
+      "fgMuted": "#8C97A5",
+      "fgFaint": "#5F6A79",
+      "fgTree": "#B4BFCC",
+      "accent": "#5E97FF",
+      "accentHover": "#96BCFF",
+      "dim": "#4E5460",
+      "error": "#E06C75",
+      "warning": "#E5C07B",
+      "success": "#4FC9B0"
     }
   },
   "git": {
@@ -127,6 +162,8 @@
     "commentPolicy": "comments must stay readable, not faded below the punctuation color",
     "variantPair": "Deep and Flat are an exact inversion: the same two greys swapped between editor and chrome. Changing one requires mirroring the other.",
     "inkDerivation": "Dark punctuation is the identifier color at 86% per channel; the line number is 44%. The build recomputes both when the identifier changes.",
-    "gitScale": "Git decoration colors come from the `git` group, not from ui.warning/ui.success. Within a mode the six hued statuses share one (L, C) in oklch and differ only in hue, so any adjustment moves the whole mode, never a single status. 'ignored' is exempt."
+    "gitScale": "Git decoration colors come from the `git` group, not from ui.warning/ui.success. Within a mode the six hued statuses share one (L, C) in oklch and differ only in hue, so any adjustment moves the whole mode, never a single status. 'ignored' is exempt.",
+    "coolPalette": "Chalkdraw Cool sits at roughly 140% of Deep's syntax chroma, and strings (#E8C79A) are the only warm hue in the code -- identifiers are a warm-neutral chalk white, everything else is cool. If the palette is retuned, that relationship holds: raise or lower the whole set together and keep strings as the single warm note. The surfaces are lightness-matched to Flat in oklch (editor L 0.2295, panels L 0.2121) with Cool's blue hue preserved, and punctuation is lifted to the lightness Deep's 86% ink rule would give, so operators read as brightly as identifiers.",
+    "coolFields": "Cool is the one variant where field/property/variable (#A4BDD6) differs from the default foreground (#F2F0E8). Deep, Flat and Paper keep them equal."
   }
 }

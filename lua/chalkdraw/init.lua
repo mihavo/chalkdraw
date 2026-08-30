@@ -15,7 +15,7 @@ local groups = require('chalkdraw.groups')
 
 local M = {}
 
-M.variants = { 'deep', 'flat', 'paper' }
+M.variants = { 'deep', 'flat', 'paper', 'cool' }
 
 --- Return one variant's resolved palette, for statusline plugins and the like.
 function M.palette(variant)
@@ -27,7 +27,7 @@ end
 M.options = { transparent = false }
 
 --- Apply a variant.
---- @param variant string|table 'deep'|'flat'|'paper', or { variant=, transparent= }
+--- @param variant string|table 'deep'|'flat'|'paper'|'cool', or { variant=, transparent= }
 --- @param opts table|nil { transparent = boolean }
 function M.load(variant, opts)
   if type(variant) == 'table' then
@@ -45,7 +45,7 @@ function M.load(variant, opts)
   local p = palette[variant]
   if not p then
     vim.notify(
-      ("chalkdraw: unknown variant '%s' (expected deep, flat or paper)"):format(variant),
+      ("chalkdraw: unknown variant '%s' (expected deep, flat, paper or cool)"):format(variant),
       vim.log.levels.ERROR
     )
     return
@@ -74,7 +74,7 @@ end
 
 --- Configure and apply. Options are remembered, so a later
 --- `:colorscheme chalkdraw-flat` keeps them.
---- @param opts table|nil { variant = 'deep'|'flat'|'paper', transparent = boolean }
+--- @param opts table|nil { variant = 'deep'|'flat'|'paper'|'cool', transparent = boolean }
 function M.setup(opts)
   opts = opts or {}
   if opts.transparent ~= nil then
