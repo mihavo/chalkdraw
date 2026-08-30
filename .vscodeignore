@@ -12,3 +12,4 @@ resources/icon/chalkdraw-icon.svg
 **/.DS_Store
 .gitignore
 scripts/**
+after/**
