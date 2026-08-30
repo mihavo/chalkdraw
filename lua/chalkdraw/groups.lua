@@ -263,8 +263,8 @@ function M.build(p, opts)
     -- Fields, properties and object keys take the identifier ink by design.
     ['@variable'] = s.identifier,
     ['@variable.builtin'] = s.keyword,
-    ['@variable.parameter'] = s.identifier,
-    ['@variable.parameter.builtin'] = s.identifier,
+    ['@variable.parameter'] = s.parameter or s.field,
+    ['@variable.parameter.builtin'] = s.parameter or s.field,
     ['@variable.member'] = s.field,
     ['@property'] = s.field,
     ['@field'] = s.field,
@@ -294,6 +294,12 @@ function M.build(p, opts)
   -- Markup: headings take the keyword color, emphasis the type color, inline
   -- code the string color, links the function color -- and, per the design,
   -- strong text is weight-neutral rather than bold.
+  -- Imported module paths. Go's bundled highlights.scm tags the path as a
+  -- plain @string, so after/queries/go/highlights.scm adds @string.import on
+  -- top; unmapped, it would simply inherit @string.
+  hl['@string.import'] = { fg = s.importPath or s.string }
+  hl['@module.import'] = { fg = s.importPath or s.string }
+
   hl['@markup.heading'] = { fg = s.keyword }
   hl['@markup.heading.1'] = { fg = s.keyword }
   hl['@markup.heading.2'] = { fg = s.keyword }
@@ -327,7 +333,7 @@ function M.build(p, opts)
     ['@lsp.type.interface'] = s.type,
     ['@lsp.type.enum'] = s.type,
     ['@lsp.type.typeParameter'] = s.type,
-    ['@lsp.type.parameter'] = s.identifier,
+    ['@lsp.type.parameter'] = s.parameter or s.field,
     ['@lsp.type.variable'] = s.identifier,
     ['@lsp.type.property'] = s.field,
     ['@lsp.type.enumMember'] = s.number,
