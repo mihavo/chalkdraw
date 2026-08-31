@@ -2,7 +2,7 @@
   "name": "chalkdraw",
   "displayName": "Chalkdraw",
   "description": "A chalkboard-inspired theme in four variants \u2014 Deep, Flat and Cool (dark) and Paper (light) \u2014 designed to minimize eye strain.",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "publisher": "michaelvolakis",
   "license": "MIT",
   "icon": "resources/icon/chalkdraw.png",
@@ -35,7 +35,8 @@
     "build": "node src/build.js",
     "package": "npm run build && npx --yes @vscode/vsce package",
     "ink": "node scripts/try-ink.js",
-    "string": "node scripts/try-string.js"
+    "string": "node scripts/try-string.js",
+    "flat": "node scripts/try-flat-bg.js"
   },
   "contributes": {
     "themes": [

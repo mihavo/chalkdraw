@@ -6,16 +6,16 @@
     "deep": {
       "kind": "dark",
       "label": "Chalkdraw Deep",
-      "editorBackground": "#17191B",
-      "chromeBackground": "#1B1D1F",
-      "currentLine": "#1F2125"
+      "editorBackground": "#181818",
+      "chromeBackground": "#1D1D1D",
+      "currentLine": "#262626"
     },
     "flat": {
       "kind": "dark",
       "label": "Chalkdraw Flat",
-      "editorBackground": "#1E1F22",
-      "chromeBackground": "#181818",
-      "currentLine": "#2A2C31"
+      "editorBackground": "#1C1C1C",
+      "chromeBackground": "#151515",
+      "currentLine": "#292929"
     },
     "paper": {
       "kind": "light",
@@ -70,7 +70,7 @@
   },
   "ui": {
     "dark": {
-      "border": "#282A2D",
+      "border": "#2D2F32",
       "fgStrong": "#E6EAEF",
       "fgMuted": "#8B939C",
       "fgFaint": "#6D7681",

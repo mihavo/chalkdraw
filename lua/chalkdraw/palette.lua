@@ -7,9 +7,9 @@ M.deep = {
   name = 'Chalkdraw Deep',
   kind = 'dark',
   shell = {
-    editor = '#17191B',
-    chrome = '#1B1D1F',
-    line = '#1F2125',
+    editor = '#181818',
+    chrome = '#1D1D1D',
+    line = '#262626',
   },
   syntax = {
     keyword = '#F29790',
@@ -27,7 +27,7 @@ M.deep = {
     constant = '#D19B6C',
   },
   ui = {
-    border = '#282A2D',
+    border = '#2D2F32',
     fgStrong = '#E6EAEF',
     fgMuted = '#8B939C',
     fgFaint = '#6D7681',
@@ -55,9 +55,9 @@ M.flat = {
   name = 'Chalkdraw Flat',
   kind = 'dark',
   shell = {
-    editor = '#1E1F22',
-    chrome = '#181818',
-    line = '#2A2C31',
+    editor = '#1C1C1C',
+    chrome = '#151515',
+    line = '#292929',
   },
   syntax = {
     keyword = '#F29790',
@@ -75,7 +75,7 @@ M.flat = {
     constant = '#D19B6C',
   },
   ui = {
-    border = '#282A2D',
+    border = '#2D2F32',
     fgStrong = '#E6EAEF',
     fgMuted = '#8B939C',
     fgFaint = '#6D7681',

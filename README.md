@@ -6,16 +6,16 @@
 
 **A chalkboard-inspired theme**
 
-[![Version](https://vsmarketplacebadges.dev/version-short/michaelvolakis.chalkdraw.svg?color=abbfd6&labelColor=1b1d1f&style=for-the-badge)](https://marketplace.visualstudio.com/items?itemName=michaelvolakis.chalkdraw)
-[![Installs](https://vsmarketplacebadges.dev/installs-short/michaelvolakis.chalkdraw.svg?color=7aa2f7&labelColor=1b1d1f&style=for-the-badge)](https://marketplace.visualstudio.com/items?itemName=michaelvolakis.chalkdraw)
-[![Downloads](https://vsmarketplacebadges.dev/downloads-short/michaelvolakis.chalkdraw.svg?color=4fc9b0&labelColor=1b1d1f&style=for-the-badge)](https://marketplace.visualstudio.com/items?itemName=michaelvolakis.chalkdraw)
-[![License](https://img.shields.io/github/license/mihavo/chalkdraw?color=d1a8ff&labelColor=1b1d1f&style=for-the-badge)](./LICENSE)
+[![Version](https://vsmarketplacebadges.dev/version-short/michaelvolakis.chalkdraw.svg?color=abbfd6&labelColor=1d1d1d&style=for-the-badge)](https://marketplace.visualstudio.com/items?itemName=michaelvolakis.chalkdraw)
+[![Installs](https://vsmarketplacebadges.dev/installs-short/michaelvolakis.chalkdraw.svg?color=7aa2f7&labelColor=1d1d1d&style=for-the-badge)](https://marketplace.visualstudio.com/items?itemName=michaelvolakis.chalkdraw)
+[![Downloads](https://vsmarketplacebadges.dev/downloads-short/michaelvolakis.chalkdraw.svg?color=4fc9b0&labelColor=1d1d1d&style=for-the-badge)](https://marketplace.visualstudio.com/items?itemName=michaelvolakis.chalkdraw)
+[![License](https://img.shields.io/github/license/mihavo/chalkdraw?color=d1a8ff&labelColor=1d1d1d&style=for-the-badge)](./LICENSE)
 
 </div>
 
 <br />
 
-![Chalkdraw — Deep, Flat, Cool and Paper](./resources/screenshots/chalkdraw-variants.png)
+![Chalkdraw Deep](./resources/screenshots/chalkdraw-variants.png)
 
 <br />
 
@@ -107,10 +107,10 @@ use { 'mihavo/chalkdraw', config = function() vim.cmd.colorscheme('chalkdraw-dee
 | Line numbers | `#5e6976` | `#798593` |
 | Cursor | `#abbfd6` | `#202e3e` |
 | Rails, active marks | `#7aa2f7` | `#2e6da8` |
-| Editor background | `#17191b` | `#ebe6da` |
-| Sidebar, tabs, status bar | `#1b1d1f` | `#e2dcce` |
-| Active line | `#1f2125` | `#cfcabf` |
-| Dividers | `#282a2d` | `#d9d3c7` |
+| Editor background | `#181818` | `#ebe6da` |
+| Sidebar, tabs, status bar | `#1d1d1d` | `#e2dcce` |
+| Active line | `#262626` | `#cfcabf` |
+| Dividers | `#2d2f32` | `#d9d3c7` |
 
 <br />
 
