@@ -15,7 +15,7 @@
 
 <br />
 
-![Chalkdraw Deep](./resources/screenshots/chalkdraw-variants.png)
+![Chalkdraw — Deep, Flat, Cool and Paper](./resources/screenshots/chalkdraw-variants.png)
 
 <br />
 
