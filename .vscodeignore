@@ -13,3 +13,5 @@ resources/icon/chalkdraw-icon.svg
 .gitignore
 scripts/**
 after/**
+iterm/**
+jetbrains/**

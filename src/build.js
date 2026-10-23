@@ -23,6 +23,7 @@ const ROOT = path.join(__dirname, '..');
 const tokens = JSON.parse(
   fs.readFileSync(path.join(__dirname, 'chalkdraw-tokens.json'), 'utf8')
 );
+const createJetBrains = require('./jetbrains.js');
 
 /* ---------------------------------------------------------------- color utils */
 
@@ -832,16 +833,19 @@ function buildWorkbench(v, s, u, g, isDark) {
     // string ink -- the one role guaranteed to be green in every palette.
     'terminal.ansiGreen': s.string,
     'terminal.ansiYellow': u.warning,
-    'terminal.ansiBlue': s.keyword,
-    'terminal.ansiMagenta': s.function,
+    // The blue slot must actually be blue: `ls` paints directories with it, and
+    // git, npm and most CLIs assume the standard meanings. It follows the
+    // function ink; magenta follows numbers, the palette's purple.
+    'terminal.ansiBlue': s.function,
+    'terminal.ansiMagenta': s.number,
     'terminal.ansiCyan': s.type,
     'terminal.ansiWhite': s.identifier,
     'terminal.ansiBrightBlack': isDark ? u.dim : u.fgFaint,
     'terminal.ansiBrightRed': step(u.error, isDark),
     'terminal.ansiBrightGreen': step(s.string, isDark),
     'terminal.ansiBrightYellow': step(u.warning, isDark),
-    'terminal.ansiBrightBlue': step(s.keyword, isDark),
-    'terminal.ansiBrightMagenta': step(s.function, isDark),
+    'terminal.ansiBrightBlue': step(s.function, isDark),
+    'terminal.ansiBrightMagenta': step(s.number, isDark),
     'terminal.ansiBrightCyan': step(s.type, isDark),
     'terminal.ansiBrightWhite': isDark ? u.fgStrong : u.fgTree,
   };
@@ -1296,6 +1300,93 @@ let failed = false;
   }
 }
 
+/* ------------------------------------------------------------------ iTerm2 */
+
+/**
+ * iTerm2 colour presets, generated from the same shells and ANSI block the
+ * VS Code themes use, so a terminal sitting next to the editor is the same
+ * theme rather than an approximation of it.
+ *
+ * The format is an old-style plist of sRGB components in 0..1. iTerm reads the
+ * 16 ANSI slots plus a handful of chrome colours; anything it does not
+ * recognise is ignored, so only the keys it actually honours are emitted.
+ */
+function itermColor(hex) {
+  const [r, g, b] = hex2rgb(hex).map((v) => v / 255);
+  const f = (v) => v.toFixed(10);
+  return [
+    '\t<dict>',
+    '\t\t<key>Alpha Component</key>',
+    '\t\t<real>1</real>',
+    '\t\t<key>Blue Component</key>',
+    `\t\t<real>${f(b)}</real>`,
+    '\t\t<key>Color Space</key>',
+    '\t\t<string>sRGB</string>',
+    '\t\t<key>Green Component</key>',
+    `\t\t<real>${f(g)}</real>`,
+    '\t\t<key>Red Component</key>',
+    `\t\t<real>${f(r)}</real>`,
+    '\t</dict>',
+  ].join('\n');
+}
+
+function buildIterm(key) {
+  const theme = buildTheme(key);
+  const c = theme.colors;
+  const { s, u, isDark } = resolvePalette(key);
+
+  const slots = {
+    'Ansi 0 Color': c['terminal.ansiBlack'],
+    'Ansi 1 Color': c['terminal.ansiRed'],
+    'Ansi 2 Color': c['terminal.ansiGreen'],
+    'Ansi 3 Color': c['terminal.ansiYellow'],
+    'Ansi 4 Color': c['terminal.ansiBlue'],
+    'Ansi 5 Color': c['terminal.ansiMagenta'],
+    'Ansi 6 Color': c['terminal.ansiCyan'],
+    'Ansi 7 Color': c['terminal.ansiWhite'],
+    'Ansi 8 Color': c['terminal.ansiBrightBlack'],
+    'Ansi 9 Color': c['terminal.ansiBrightRed'],
+    'Ansi 10 Color': c['terminal.ansiBrightGreen'],
+    'Ansi 11 Color': c['terminal.ansiBrightYellow'],
+    'Ansi 12 Color': c['terminal.ansiBrightBlue'],
+    'Ansi 13 Color': c['terminal.ansiBrightMagenta'],
+    'Ansi 14 Color': c['terminal.ansiBrightCyan'],
+    'Ansi 15 Color': c['terminal.ansiBrightWhite'],
+    'Background Color': c['terminal.background'],
+    'Foreground Color': c['terminal.foreground'],
+    // iTerm paints bold text in its own colour unless told otherwise; the
+    // theme has no bold ink, so it takes the strongest foreground.
+    'Bold Color': isDark ? u.fgStrong : u.fgTree,
+    'Cursor Color': c['terminalCursor.foreground'],
+    'Cursor Text Color': v_editorBackground(key),
+    'Cursor Guide Color': theme.colors['editor.lineHighlightBackground'],
+    'Selection Color': u.border,
+    'Selected Text Color': isDark ? u.fgStrong : s.identifier,
+    'Link Color': s.function,
+    'Badge Color': u.accent,
+  };
+
+  const body = Object.keys(slots)
+    .map((k) => `\t<key>${k}</key>\n${itermColor(slots[k])}`)
+    .join('\n');
+
+  return [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">',
+    '<plist version="1.0">',
+    '<dict>',
+    body,
+    '</dict>',
+    '</plist>',
+    '',
+  ].join('\n');
+}
+
+/** The variant's own editor background, for text drawn under the cursor. */
+function v_editorBackground(key) {
+  return tokens.variants[key].editorBackground;
+}
+
 // Superseded palette values. They must not reappear in generated output.
 const RETIRED = [
   '#131416', '#191A1C', '#1D1F21', '#C4B7A4', '#26282B', '#57534E',
@@ -1325,6 +1416,87 @@ for (const key of Object.keys(tokens.variants)) {
   warnings.forEach((w) => console.warn(`    review:  ${w}`));
   if (errors.length) failed = true;
 }
+{
+  const dir = path.join(ROOT, 'iterm');
+  fs.mkdirSync(dir, { recursive: true });
+  for (const key of Object.keys(tokens.variants)) {
+    fs.writeFileSync(path.join(dir, `Chalkdraw ${tokens.variants[key].label.split(' ')[1]}.itermcolors`), buildIterm(key));
+  }
+  console.log(`\u2713 iTerm2 presets \u2014 ${Object.keys(tokens.variants).length} variants \u2192 iterm/`);
+}
+/* ---------------------------------------------------------------- JetBrains */
+
+/**
+ * The JetBrains port needs the same palette the VS Code theme resolves plus the
+ * ANSI block, which only exists on the built workbench colours -- the run window
+ * and the block terminal read from the editor scheme, so they have to agree with
+ * the integrated terminal rather than be picked again.
+ */
+function jetbrainsContext(key) {
+  const { v, isDark, s, u, g } = resolvePalette(key);
+  const colors = buildWorkbench(v, s, u, g, isDark);
+  const ansi = {};
+  for (const k of Object.keys(colors)) {
+    if (k.startsWith('terminal.ansi')) ansi[k.slice('terminal.'.length)] = colors[k];
+  }
+  // The whole workbench map rides along: where VS Code and a JetBrains IDE have
+  // the same surface -- a dialog, a menu, a secondary button, an input -- the
+  // port should take the value the VS Code theme already settled on rather than
+  // invent a second one.
+  return { key, v, isDark, s, u, g, ansi, vs: colors };
+}
+
+{
+  const jb = createJetBrains({
+    mix, alpha, step, contrast, oklch,
+    parentKeys: JSON.parse(
+      fs.readFileSync(path.join(__dirname, "jetbrains-parent-keys.json"), "utf8")
+    ).keys,
+  });
+  const dir = path.join(ROOT, 'jetbrains', 'plugin');
+  const themesDir = path.join(dir, 'themes');
+  fs.mkdirSync(path.join(dir, 'META-INF'), { recursive: true });
+  fs.mkdirSync(themesDir, { recursive: true });
+
+  const variants = Object.keys(tokens.variants);
+  for (const key of variants) {
+    const ctx = jetbrainsContext(key);
+    fs.writeFileSync(
+      path.join(themesDir, `chalkdraw-${key}.theme.json`),
+      JSON.stringify(jb.themeJson(ctx), null, 2) + '\n'
+    );
+    fs.writeFileSync(path.join(themesDir, `chalkdraw-${key}.xml`), jb.colorScheme(ctx));
+    for (const w of jb.checkJetBrains(ctx)) {
+      console.warn(`    review:  ${tokens.variants[key].label} (JetBrains) ${w}`);
+    }
+  }
+
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  fs.writeFileSync(
+    path.join(dir, 'META-INF', 'plugin.xml'),
+    jb.pluginXml({
+      version: pkg.version,
+      variants,
+      // Islands landed in 2025.2. Anything older gets the flat new-UI look, so
+      // the floor is that build rather than the oldest platform the JSON parses.
+      sinceBuild: '252',
+      description: [
+        '    <p>A chalkboard-inspired theme in four variants &mdash; Deep, Flat and Cool (dark)',
+        '    and Paper (light) &mdash; designed to minimize eye strain.</p>',
+        '    <p>Built for the Islands UI: the editor and each tool window are cards on the',
+        '    window frame, using the two grounds each variant already carries.</p>',
+        '    <p>Generated from the same palette as the VS Code theme, the Neovim colorscheme',
+        '    and the iTerm2 presets.</p>',
+      ].join('\n'),
+      changeNotes: `    <p>${pkg.version} &mdash; first JetBrains release.</p>`,
+    })
+  );
+
+  console.log(
+    `\u2713 JetBrains plugin \u2014 ${variants.length} themes + schemes \u2192 jetbrains/plugin/`
+  );
+}
+
 {
   const out = buildNeovimPalette();
   const n = Object.keys(tokens.variants).length;

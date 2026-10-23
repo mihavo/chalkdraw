@@ -68,6 +68,12 @@ use { 'mihavo/chalkdraw', config = function() vim.cmd.colorscheme('chalkdraw-dee
 ```
 <br />
 
+## iTerm2
+
+Download the repo (or just the `iterm/` folder), then **iTerm2 → Settings → Profiles → Colors → Color Presets… → Import…** and pick the `.itermcolors` files. They appear in the same menu afterwards.
+
+<br />
+
 
 ## Screenshots
 
