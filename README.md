@@ -15,7 +15,7 @@
 
 <br />
 
-![Chalkdraw — Deep, Flat, Cool and Paper](./resources/screenshots/chalkdraw-variants.png)
+![Chalkdraw — Deep, Flat, Cool, Night and Paper](./resources/screenshots/chalkdraw-variants.png)
 
 <br />
 
@@ -27,13 +27,13 @@ Open Quick Open (`Ctrl+P` / `Cmd+P`), then run:
 ext install michaelvolakis.chalkdraw
 ```
 
-Then pick the theme: **Preferences: Color Theme** → **Chalkdraw Deep**, **Chalkdraw Flat**, **Chalkdraw Cool** or **Chalkdraw Paper**.
+Then pick the theme: **Preferences: Color Theme** → **Chalkdraw Deep**, **Chalkdraw Flat**, **Chalkdraw Cool**, **Chalkdraw Night** or **Chalkdraw Paper**.
 
 <br />
 
 ## Neovim
 
-The same four variants ship as a Neovim colorscheme, generated from the same palette source, so the two editors never drift apart. Requires Neovim 0.9+ with `termguicolors`.
+The same five variants ship as a Neovim colorscheme, generated from the same palette source, so the two editors never drift apart. Requires Neovim 0.9+ with `termguicolors`.
 
 **lazy.nvim**
 
@@ -89,6 +89,10 @@ Download the repo (or just the `iterm/` folder), then **iTerm2 → Settings → 
 
 ![Chalkdraw Cool](./resources/screenshots/chalkdraw-cool.png)
 
+**Night**
+
+![Chalkdraw Night](./resources/screenshots/chalkdraw-night.png)
+
 **Paper**
 
 ![Chalkdraw Paper](./resources/screenshots/chalkdraw-paper.png)
@@ -97,26 +101,28 @@ Download the repo (or just the `iterm/` folder), then **iTerm2 → Settings → 
 
 ## Palette
 
-| Role | Dark | Paper |
-| --- | --- | --- |
-| Keywords, storage, control flow | `#f29790` | `#b7272d` |
-| Imported module paths | `#98cddf` | `#01535e` |
-| Types, classes, packages | `#4fc9b0` | `#006d5c` |
-| Functions and methods | `#7aa2f7` | `#2c59c8` |
-| Strings | `#75bf85` | `#29743f` |
-| Numbers | `#e2b3ed` | `#7c5186` |
-| Named constants, enum members | `#d19b6c` | `#7c3e2e` |
-| Variables, fields, properties | `#abbfd6` | `#202e3e` |
-| Parameter names in declarations | `#ffc491` | `#985500` |
-| Operators, brackets, separators | `#788696` | `#576474` |
-| Comments | `#6d7681` | `#4e5d6f` |
-| Line numbers | `#5e6976` | `#798593` |
-| Cursor | `#abbfd6` | `#202e3e` |
-| Rails, active marks | `#7aa2f7` | `#2e6da8` |
-| Editor background | `#181818` | `#ebe6da` |
-| Sidebar, tabs, status bar | `#1d1d1d` | `#e2dcce` |
-| Active line | `#262626` | `#cfcabf` |
-| Dividers | `#2d2f32` | `#d9d3c7` |
+| Role | Dark | Night | Paper |
+| --- | --- | --- | --- |
+| Keywords, storage, control flow | `#f29790` | `#ff9c94` | `#b7272d` |
+| Imported module paths | `#98cddf` | `#9edcf2` | `#01535e` |
+| Types, classes, packages | `#4fc9b0` | `#5ee2c6` | `#006d5c` |
+| Functions and methods | `#7aa2f7` | `#8db2ff` | `#2c59c8` |
+| Strings | `#75bf85` | `#8dd9a0` | `#29743f` |
+| Numbers | `#e2b3ed` | `#eab9ff` | `#7c5186` |
+| Named constants, enum members | `#d19b6c` | `#edaa72` | `#7c3e2e` |
+| Variables, fields, properties | `#abbfd6` | `#bdcce0` | `#202e3e` |
+| Parameter names in declarations | `#ffc491` | `#ffce9c` | `#985500` |
+| Operators, brackets, separators | `#788696` | `#8592a8` | `#576474` |
+| Comments | `#6d7681` | `#7f8aa4` | `#4e5d6f` |
+| Line numbers | `#5e6976` | `#69738a` | `#798593` |
+| Cursor | `#abbfd6` | `#bdcce0` | `#202e3e` |
+| Rails, active marks | `#7aa2f7` | `#8ea9ff` | `#2e6da8` |
+| Editor background | `#181818` | `#1c212b` | `#ebe6da` |
+| Sidebar, tabs, status bar | `#1d1d1d` | `#171b23` | `#e2dcce` |
+| Active line | `#262626` | `#252d40` | `#cfcabf` |
+| Dividers | `#2d2f32` | `#171b23` | `#d9d3c7` |
+
+The Dark column holds Deep's values. Flat and Cool share those inks over their own grounds. Night carries its own palette, and two of its surfaces sit lower than one row can show: the status bar and the activity bar drop to `#13161d`. Night's dividers take the chrome colour on purpose, so panels part by lightness rather than by a drawn line; its indent guides and rulers use `#282e3a`.
 
 <br />
 

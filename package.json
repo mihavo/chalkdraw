@@ -1,8 +1,8 @@
 {
   "name": "chalkdraw",
   "displayName": "Chalkdraw",
-  "description": "A chalkboard-inspired theme in four variants — Deep, Flat and Cool (dark) and Paper (light) — designed to minimize eye strain.",
-  "version": "1.3.0",
+  "description": "A chalkboard-inspired theme in five variants — Deep, Flat, Cool and Night (dark) and Paper (light) — designed to minimize eye strain.",
+  "version": "1.4.0",
   "publisher": "michaelvolakis",
   "license": "MIT",
   "icon": "resources/icon/chalkdraw.png",
@@ -60,6 +60,11 @@
         "label": "Chalkdraw Cool",
         "uiTheme": "vs-dark",
         "path": "./themes/chalkdraw-cool.json"
+      },
+      {
+        "label": "Chalkdraw Night",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chalkdraw-night.json"
       }
     ]
   }

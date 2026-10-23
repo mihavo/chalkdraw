@@ -10,7 +10,8 @@
  *   npm run string -- --show                   report the current strings and metrics
  *   npm run string -- --revert                 discard local edits, restore last commit
  *
- * Sets syntax.dark.string, shared by Deep, Flat and Cool. Paper is a light
+ * Sets syntax.dark.string, shared by Deep, Flat and Cool. Night carries its own
+ * string ink in syntax.night, which this tool reports but does not move. Paper is a light
  * ground, so a dark-tuned string ink usually lands far below the 4.5:1 AA bar
  * there; rather than carry a colour nobody can read, Paper gets a hue-matched
  * equivalent re-solved for lightness, unless --paper pins one explicitly.
@@ -33,7 +34,7 @@ const TOKENS = path.join(ROOT, 'src', 'chalkdraw-tokens.json');
 /** Paper's other accents sit in this band; the derived string ink joins them. */
 const PAPER_TARGET_CONTRAST = 4.6;
 
-const PALETTE_OF = { deep: 'dark', flat: 'dark', paper: 'light', cool: 'dark' };
+const PALETTE_OF = { deep: 'dark', flat: 'dark', paper: 'light', cool: 'dark', night: 'night' };
 const NEIGHBOURS = ['importPath', 'number', 'type', 'identifier', 'keyword', 'comment'];
 
 function report(tokens) {

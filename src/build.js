@@ -4,7 +4,8 @@
 /**
  * Chalkdraw theme build.
  *
- * Reads src/chalkdraw-tokens.json and emits themes/chalkdraw-{deep,flat,paper}.json.
+ * Reads src/chalkdraw-tokens.json and emits
+ * themes/chalkdraw-{deep,flat,paper,cool,night}.json.
  * Change a color in the tokens file, run `npm run build`, commit both. No hex
  * literals belong in this file except the neutral #000000/#FFFFFF used for
  * alpha-only overlays.
@@ -204,6 +205,18 @@ function buildWorkbench(v, s, u, g, isDark) {
   const line = v.currentLine;
   // Cool sinks the status bar below the panels; the others share `chrome`.
   const statusBg = v.statusBarBackground || chrome;
+  // Night sinks the activity bar alongside the status bar; the others share
+  // `chrome`.
+  const activityBg = v.activityBarBackground || chrome;
+  // The borders that separate one panel from the next. Night sets these to the
+  // chrome colour so the sidebar, activity bar, tabs, panel and status bar
+  // separate by a lightness step instead of a drawn line. `u.border` is left
+  // alone and still carries indent guides, rulers and widget outlines, so those
+  // do not disappear with the panel lines.
+  const divider = v.divider || u.border;
+  // The active tab's accent sits on a top rail by default. Night moves it to an
+  // underline.
+  const railBottom = v.activeTabRail === 'bottom';
   // Optional brighter accent for hover states. The fallbacks keep the exact
   // steps the other variants shipped with, so adding this cannot move them.
   const accentHover = u.accentHover || step(u.accent, isDark, 0.12);
@@ -294,33 +307,38 @@ function buildWorkbench(v, s, u, g, isDark) {
 
     'sideBar.background': chrome,
     'sideBar.foreground': u.fgTree,
-    'sideBar.border': u.border,
+    'sideBar.border': divider,
     'sideBarTitle.foreground': u.fgFaint,
     'sideBarSectionHeader.background': chrome,
     'sideBarSectionHeader.foreground': u.fgFaint,
-    'sideBarSectionHeader.border': u.border,
+    'sideBarSectionHeader.border': divider,
 
-    'activityBar.background': chrome,
+    'activityBar.background': activityBg,
     'activityBar.foreground': u.fgStrong,
     'activityBar.inactiveForeground': u.fgMuted,
-    'activityBar.border': u.border,
+    'activityBar.border': divider,
     'activityBar.activeBorder': u.accent,
     'activityBarBadge.background': u.accent,
     'activityBarBadge.foreground': isDark ? v.editorBackground : '#FFFFFF',
 
-    'editorGroup.border': u.border,
+    'editorGroup.border': divider,
     'editorGroupHeader.tabsBackground': chrome,
-    'editorGroupHeader.tabsBorder': u.border,
+    'editorGroupHeader.tabsBorder': divider,
     'editorGroupHeader.noTabsBackground': chrome,
     'tab.activeBackground': editorBg,
     'tab.inactiveBackground': chrome,
     'tab.activeForeground': u.fgStrong,
     'tab.inactiveForeground': u.fgMuted,
     'tab.hoverForeground': u.fgStrong,
-    'tab.border': u.border,
-    'tab.activeBorderTop': u.accent,
-    'tab.activeBorder': editorBg,
-    'tab.unfocusedActiveBorderTop': u.dim,
+    'tab.border': divider,
+    // The unused side takes the active tab's own background, which is how the
+    // bottom border was already hidden on a top rail.
+    'tab.activeBorderTop': railBottom ? editorBg : u.accent,
+    'tab.activeBorder': railBottom ? u.accent : editorBg,
+    'tab.unfocusedActiveBorderTop': railBottom ? editorBg : u.dim,
+    // Emitted only on a bottom rail, so the top-rail variants keep the exact
+    // key set they shipped with.
+    ...(railBottom ? { 'tab.unfocusedActiveBorder': u.dim } : {}),
     'tab.lastPinnedBorder': u.border,
 
     'breadcrumb.background': editorBg,
@@ -333,7 +351,7 @@ function buildWorkbench(v, s, u, g, isDark) {
     'titleBar.activeForeground': u.fgMuted,
     'titleBar.inactiveBackground': chrome,
     'titleBar.inactiveForeground': u.fgFaint,
-    'titleBar.border': u.border,
+    'titleBar.border': divider,
 
     'menu.background': chrome,
     'menu.foreground': u.fgMuted,
@@ -355,11 +373,11 @@ function buildWorkbench(v, s, u, g, isDark) {
     // Panel: title row and terminal body share `chrome` with NO divider between
     // them (explicit design decision — do not add a border there).
     'panel.background': chrome,
-    'panel.border': u.border,
+    'panel.border': divider,
     'panelTitle.activeForeground': u.fgStrong,
     'panelTitle.inactiveForeground': u.fgMuted,
     'panelTitle.activeBorder': u.accent,
-    'panelSection.border': u.border,
+    'panelSection.border': divider,
     'panelSectionHeader.background': chrome,
     'panelSectionHeader.foreground': u.fgFaint,
     'panelInput.border': u.border,
@@ -372,7 +390,7 @@ function buildWorkbench(v, s, u, g, isDark) {
 
     'statusBar.background': statusBg,
     'statusBar.foreground': u.fgMuted,
-    'statusBar.border': u.border,
+    'statusBar.border': divider,
     'statusBar.noFolderBackground': statusBg,
     'statusBar.noFolderForeground': u.fgMuted,
     'statusBar.debuggingBackground': statusBg,
@@ -1481,8 +1499,8 @@ function jetbrainsContext(key) {
       // the floor is that build rather than the oldest platform the JSON parses.
       sinceBuild: '252',
       description: [
-        '    <p>A chalkboard-inspired theme in four variants &mdash; Deep, Flat and Cool (dark)',
-        '    and Paper (light) &mdash; designed to minimize eye strain.</p>',
+        '    <p>A chalkboard-inspired theme in five variants &mdash; Deep, Flat, Cool and',
+        '    Night (dark) and Paper (light) &mdash; designed to minimize eye strain.</p>',
         '    <p>Built for the Islands UI: the editor and each tool window are cards on the',
         '    window frame, using the two grounds each variant already carries.</p>',
         '    <p>Generated from the same palette as the VS Code theme, the Neovim colorscheme',

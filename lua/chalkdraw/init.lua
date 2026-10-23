@@ -1,9 +1,11 @@
 -- Chalkdraw for Neovim.
 --
--- Three variants, sharing one palette source with the VS Code extension:
+-- Five variants, sharing one palette source with the VS Code extension:
 --   chalkdraw-deep   dark, editor is the darkest surface
 --   chalkdraw-flat   dark, the same two greys inverted
 --   chalkdraw-paper  light, warm uncoated stock
+--   chalkdraw-cool   dark, a blue-cast chrome around the common dark inks
+--   chalkdraw-night  dark, a blue-black ground with its own lifted inks
 --
 -- Usage:
 --   vim.cmd.colorscheme('chalkdraw-deep')
@@ -15,7 +17,7 @@ local groups = require('chalkdraw.groups')
 
 local M = {}
 
-M.variants = { 'deep', 'flat', 'paper', 'cool' }
+M.variants = { 'deep', 'flat', 'paper', 'cool', 'night' }
 
 --- Return one variant's resolved palette, for statusline plugins and the like.
 function M.palette(variant)
@@ -27,7 +29,7 @@ end
 M.options = { transparent = false }
 
 --- Apply a variant.
---- @param variant string|table 'deep'|'flat'|'paper'|'cool', or { variant=, transparent= }
+--- @param variant string|table 'deep'|'flat'|'paper'|'cool'|'night', or { variant=, transparent= }
 --- @param opts table|nil { transparent = boolean }
 function M.load(variant, opts)
   if type(variant) == 'table' then
@@ -45,7 +47,7 @@ function M.load(variant, opts)
   local p = palette[variant]
   if not p then
     vim.notify(
-      ("chalkdraw: unknown variant '%s' (expected deep, flat, paper or cool)"):format(variant),
+      ("chalkdraw: unknown variant '%s' (expected deep, flat, paper, cool or night)"):format(variant),
       vim.log.levels.ERROR
     )
     return
@@ -74,7 +76,7 @@ end
 
 --- Configure and apply. Options are remembered, so a later
 --- `:colorscheme chalkdraw-flat` keeps them.
---- @param opts table|nil { variant = 'deep'|'flat'|'paper'|'cool', transparent = boolean }
+--- @param opts table|nil { variant = 'deep'|'flat'|'paper'|'cool'|'night', transparent = boolean }
 function M.setup(opts)
   opts = opts or {}
   if opts.transparent ~= nil then

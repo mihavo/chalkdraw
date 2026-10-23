@@ -1,19 +1,19 @@
 <idea-plugin>
   <id>com.michaelvolakis.chalkdraw</id>
   <name>Chalkdraw</name>
-  <version>1.3.0</version>
+  <version>1.4.0</version>
   <vendor url="https://github.com/mihavo/chalkdraw">Michael Volakis</vendor>
   <idea-version since-build="252"/>
   <description><![CDATA[
-    <p>A chalkboard-inspired theme in four variants &mdash; Deep, Flat and Cool (dark)
-    and Paper (light) &mdash; designed to minimize eye strain.</p>
+    <p>A chalkboard-inspired theme in five variants &mdash; Deep, Flat, Cool and
+    Night (dark) and Paper (light) &mdash; designed to minimize eye strain.</p>
     <p>Built for the Islands UI: the editor and each tool window are cards on the
     window frame, using the two grounds each variant already carries.</p>
     <p>Generated from the same palette as the VS Code theme, the Neovim colorscheme
     and the iTerm2 presets.</p>
   ]]></description>
   <change-notes><![CDATA[
-    <p>1.3.0 &mdash; first JetBrains release.</p>
+    <p>1.4.0 &mdash; first JetBrains release.</p>
   ]]></change-notes>
   <depends>com.intellij.modules.platform</depends>
   <extensions defaultExtensionNs="com.intellij">
@@ -21,5 +21,6 @@
     <themeProvider id="chalkdraw-flat" path="/themes/chalkdraw-flat.theme.json"/>
     <themeProvider id="chalkdraw-paper" path="/themes/chalkdraw-paper.theme.json"/>
     <themeProvider id="chalkdraw-cool" path="/themes/chalkdraw-cool.theme.json"/>
+    <themeProvider id="chalkdraw-night" path="/themes/chalkdraw-night.theme.json"/>
   </extensions>
 </idea-plugin>

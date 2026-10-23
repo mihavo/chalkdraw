@@ -197,4 +197,52 @@ M.cool = {
   },
 }
 
+M.night = {
+  name = 'Chalkdraw Night',
+  kind = 'dark',
+  shell = {
+    editor = '#1C212B',
+    chrome = '#171B23',
+    line = '#252D40',
+  },
+  syntax = {
+    keyword = '#FF9C94',
+    type = '#5EE2C6',
+    ['function'] = '#8DB2FF',
+    string = '#8DD9A0',
+    number = '#EAB9FF',
+    comment = '#7F8AA4',
+    identifier = '#BDCCE0',
+    punctuation = '#8592A8',
+    field = '#BDCCE0',
+    lineNumber = '#69738A',
+    importPath = '#9EDCF2',
+    parameter = '#FFCE9C',
+    constant = '#EDAA72',
+  },
+  ui = {
+    border = '#282E3A',
+    fgStrong = '#EDF1F8',
+    fgMuted = '#929CAE',
+    fgFaint = '#6B7588',
+    fgTree = '#AEB8C8',
+    accent = '#8EA9FF',
+    dim = '#3A4252',
+    error = '#F07A83',
+    warning = '#EBC683',
+    success = '#5EE2C6',
+  },
+  git = {
+    modified = '#D6C6A4',
+    untracked = '#B2D1B7',
+    deleted = '#E5BCB8',
+    conflicting = '#D8BDD9',
+    added = '#A5D2CB',
+    stageModified = '#A5D2CB',
+    stageDeleted = '#E5BCB8',
+    submodule = '#B8C8E7',
+    ignored = '#575552',
+  },
+}
+
 return M

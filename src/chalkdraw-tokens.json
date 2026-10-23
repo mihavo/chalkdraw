@@ -1,6 +1,6 @@
 {
-  "$comment": "Chalkdraw palette source (revision 4). src/build.js generates themes/*.json from this file.",
-  "revision": 4,
+  "$comment": "Chalkdraw palette source (revision 5). src/build.js generates themes/*.json from this file.",
+  "revision": 5,
   "name": "Chalkdraw",
   "variants": {
     "deep": {
@@ -34,6 +34,20 @@
       "palette": "cool",
       "gitPalette": "dark",
       "syntaxPalette": "dark"
+    },
+    "night": {
+      "kind": "dark",
+      "label": "Chalkdraw Night",
+      "editorBackground": "#1C212B",
+      "chromeBackground": "#171B23",
+      "statusBarBackground": "#13161D",
+      "activityBarBackground": "#13161D",
+      "currentLine": "#252D40",
+      "divider": "#171B23",
+      "activeTabRail": "bottom",
+      "palette": "night",
+      "gitPalette": "dark",
+      "syntaxPalette": "night"
     }
   },
   "syntax": {
@@ -66,6 +80,21 @@
       "importPath": "#01535E",
       "parameter": "#985500",
       "constant": "#7C3E2E"
+    },
+    "night": {
+      "keyword": "#FF9C94",
+      "type": "#5EE2C6",
+      "function": "#8DB2FF",
+      "string": "#8DD9A0",
+      "number": "#EAB9FF",
+      "comment": "#7F8AA4",
+      "identifier": "#BDCCE0",
+      "punctuation": "#8592A8",
+      "field": "#BDCCE0",
+      "lineNumber": "#69738A",
+      "importPath": "#9EDCF2",
+      "parameter": "#FFCE9C",
+      "constant": "#EDAA72"
     }
   },
   "ui": {
@@ -106,6 +135,18 @@
       "error": "#E06C75",
       "warning": "#E5C07B",
       "success": "#4FC9B0"
+    },
+    "night": {
+      "border": "#282E3A",
+      "fgStrong": "#EDF1F8",
+      "fgMuted": "#929CAE",
+      "fgFaint": "#6B7588",
+      "fgTree": "#AEB8C8",
+      "accent": "#8EA9FF",
+      "dim": "#3A4252",
+      "error": "#F07A83",
+      "warning": "#EBC683",
+      "success": "#5EE2C6"
     }
   },
   "git": {
@@ -154,7 +195,7 @@
   "rules": {
     "italics": "none anywhere",
     "bold": "none anywhere",
-    "fieldColor": "equals identifier in all three variants",
+    "fieldColor": "equals identifier in every variant except Cool",
     "commentPolicy": "comments must stay readable, not faded below the punctuation color",
     "variantPair": "Deep and Flat began as an exact inversion -- the same two greys swapped between editor and chrome -- and have since been tuned independently. The build reports a divergence rather than failing on it.",
     "inkDerivation": "Dark punctuation is the identifier color at 86% per channel; the line number is 44%. The build recomputes both when the identifier changes.",
@@ -162,6 +203,8 @@
     "coolPalette": "Chalkdraw Cool sits at roughly 140% of Deep's syntax chroma, and strings (#E8C79A) are the only warm hue in the code -- identifiers are a warm-neutral chalk white, everything else is cool. If the palette is retuned, that relationship holds: raise or lower the whole set together and keep strings as the single warm note. The chrome carries a deliberate blue cast (hue ~260 in oklch) and is intentionally darker than Flat. Punctuation sits at the lightness Deep's 86% ink rule would give, so operators read as brightly as identifiers.",
     "coolFields": "Cool is the one variant where field/property/variable (#A4BDD6) differs from the default foreground (#F2F0E8). Deep, Flat and Paper keep them equal.",
     "coolConstants": "Cool only: language constants (nil, true, false, iota) take the number colour #E4798D rather than keyword blue -- they are constants, and it pulls the most frequent literals in Go out of the blue mass. Struct tags were considered and rejected: the Go grammar gives them no scope of their own, so recolouring them would also recolour raw backtick strings such as embedded SQL.",
+    "nightPalette": "Chalkdraw Night is a blue-black ground at oklch hue 264. Against Cool it carries a far stronger blue cast and sits slightly lighter: at the editor, C 0.021 against 0.009 and L 0.247 against 0.229. Night is the one dark variant whose editor is lighter than its chrome (L 0.247 against 0.222), which is what makes the editor read as lit. It carries its own syntax palette rather than sharing the dark inks. Every role keeps the hue the dark palette gives it and gains lightness -- about 5 points of oklch L on average, between 2 and 8 role by role. Chroma moves little and in both directions, so the lift is lightness. The three muted inks -- comment, punctuation and the line number -- also turn 9 to 14 degrees toward blue, which is what ties them to the ground. If the palette is retuned, that relationship holds: move the whole set together. Unlike Cool, Night keeps no single warm note, and it keeps field equal to identifier.",
+    "nightChrome": "Night separates panels by lightness instead of drawn lines. The `divider` key sets the panel-separating borders -- sidebar, activity bar, title bar, tabs, panel and status bar -- to the chrome colour, so they vanish. `ui.night.border` stays at #282E3A and still carries indent guides, rulers and widget outlines, so those do not go with them. The status bar and activity bar sink one step further to #13161D, and `activeTabRail: \"bottom\"` moves the active tab's accent from a top rail to an underline. Night's git decorations take the shared dark scale rather than a lifted one of their own, so the documented equal-lightness rule still covers them.",
     "paperPalette": "Paper's syntax carries the same hues as the dark variants, re-solved for a light ground: each role keeps its oklch hue, its lightness is chosen to hit a contrast target against #EBE6DA, and chroma is pushed as far as the sRGB gamut allows under a per-role ceiling. Chromatic roles sit at ~5:1 (above the 4.5:1 AA bar) rather than the 7:1 the original handoff asked for -- at 7:1 the warm hues go brown and stop reading as their own colour."
   }
 }

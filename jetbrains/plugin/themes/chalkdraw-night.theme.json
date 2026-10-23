@@ -1,0 +1,891 @@
+{
+  "name": "Chalkdraw Night",
+  "dark": true,
+  "author": "Michael Volakis",
+  "parentTheme": "ExperimentalDark",
+  "editorScheme": "/themes/chalkdraw-night.xml",
+  "colors": {
+    "island": "#1C212B",
+    "island-line": "#252D40",
+    "island-sunken": "#0F1217",
+    "frame": "#111319",
+    "button-face": "#1C2029",
+    "button-ink": "#EDF1F8",
+    "button-default-face": "#8EA9FF",
+    "button-default-ink": "#1C212B",
+    "chip": "#252D40",
+    "popup": "#171B23",
+    "border": "#282E3A",
+    "dim": "#3A4252",
+    "ink": "#BDCCE0",
+    "ink-strong": "#EDF1F8",
+    "ink-muted": "#929CAE",
+    "ink-faint": "#6B7588",
+    "ink-tree": "#AEB8C8",
+    "ink-over-accent": "#1C212B",
+    "icon-stroke": "#AEB8C8",
+    "accent": "#8EA9FF",
+    "accent-hover": "#A7BCFF",
+    "accent-selection": "#3A4462",
+    "accent-selection-soft": "#2C3449",
+    "accent-frame-selection": "#323A55",
+    "error": "#F07A83",
+    "warning": "#EBC683",
+    "success": "#5EE2C6",
+    "wash-hover": "#EDF1F812",
+    "wash-pressed": "#EDF1F81F",
+    "wash-border": "#EDF1F824",
+    "wash-none": "#282E3A00"
+  },
+  "ui": {
+    "*": {
+      "foreground": "ink-strong",
+      "background": "popup",
+      "disabledBackground": "popup",
+      "disabledText": "ink-faint",
+      "inactiveForeground": "ink-faint",
+      "inactiveUnderlineColor": "dim",
+      "modifiedItemForeground": "accent",
+      "separatorForeground": "ink-faint",
+      "shortcutForeground": "ink-muted",
+      "focusColor": "accent",
+      "infoForeground": "ink-muted",
+      "borderColor": "border",
+      "separatorColor": "border",
+      "disabledForeground": "ink-faint",
+      "disabledBorderColor": "border",
+      "hoverBackground": "wash-hover",
+      "selectionBackground": "accent-selection",
+      "selectionForeground": "ink-strong",
+      "selectionInactiveBackground": "island-line",
+      "selectionInactiveForeground": "ink-strong",
+      "lightSelectionBackground": "accent-selection-soft",
+      "selectionBackgroundInactive": "island-line",
+      "inactiveBackground": "frame",
+      "acceleratorForeground": "ink-muted",
+      "underlineColor": "accent"
+    },
+    "Panel": {
+      "background": "popup",
+      "foreground": "ink-strong"
+    },
+    "Viewport": {
+      "background": "popup",
+      "foreground": "ink-strong"
+    },
+    "ScrollPane": {
+      "background": "popup"
+    },
+    "SplitPane": {
+      "background": "popup",
+      "highlight": "border"
+    },
+    "OptionPane": {
+      "background": "popup",
+      "foreground": "ink-strong",
+      "messageForeground": "ink-strong"
+    },
+    "TitledBorder": {
+      "titleColor": "ink-strong"
+    },
+    "MainMenu": {
+      "background": "frame",
+      "selectionBackground": "accent-selection",
+      "selectionForeground": "ink-strong",
+      "transparentSelectionBackground": "wash-hover"
+    },
+    "TitlePane": {
+      "background": "frame",
+      "Button": {
+        "hoverBackground": "wash-hover"
+      }
+    },
+    "Ide": {
+      "Shadow": {
+        "top0Color": "wash-none",
+        "top1Color": "wash-none",
+        "bottom0Color": "wash-none",
+        "bottom1Color": "wash-none",
+        "left0Color": "wash-none",
+        "left1Color": "wash-none",
+        "right0Color": "wash-none",
+        "right1Color": "wash-none",
+        "topLeft0Color": "wash-none",
+        "topLeft1Color": "wash-none",
+        "topRight0Color": "wash-none",
+        "topRight1Color": "wash-none",
+        "bottomLeft0Color": "wash-none",
+        "bottomLeft1Color": "wash-none",
+        "bottomRight0Color": "wash-none",
+        "bottomRight1Color": "wash-none"
+      }
+    },
+    "Islands": 1,
+    "Island": {
+      "arc": 20,
+      "arc.compact": 16,
+      "borderArcLength": 14,
+      "borderArcLength.compact": 10,
+      "borderWidth": 6,
+      "borderWidth.compact": 4,
+      "borderColor": "island",
+      "inactiveAlpha": 0.56,
+      "toolWindowAlpha": 0.2
+    },
+    "MainWindow": {
+      "background": "frame",
+      "Tab": {
+        "background": "frame",
+        "selectedBackground": "island",
+        "selectedForeground": "ink-strong",
+        "selectedInactiveBackground": "chip",
+        "hoverBackground": "wash-hover",
+        "hoverForeground": "ink-strong",
+        "separatorColor": "border",
+        "borderColor": "frame",
+        "foreground": "ink-muted"
+      },
+      "FullScreeControl": {
+        "Background": "chip"
+      }
+    },
+    "MainToolbar": {
+      "background": "frame",
+      "inactiveBackground": "frame",
+      "borderColor": "wash-none",
+      "Icon": {
+        "hoverBackground": "wash-hover",
+        "pressedBackground": "wash-pressed"
+      },
+      "Dropdown": {
+        "hoverBackground": "wash-hover",
+        "pressedBackground": "wash-pressed",
+        "transparentHoverBackground": "wash-hover"
+      }
+    },
+    "StatusBar": {
+      "background": "frame",
+      "borderColor": "wash-none",
+      "topBorderWidth": 0,
+      "Widget": {
+        "foreground": "ink-muted",
+        "hoverForeground": "ink-strong",
+        "hoverBackground": "wash-hover",
+        "pressedBackground": "wash-pressed"
+      },
+      "Breadcrumbs": {
+        "foreground": "ink-muted",
+        "hoverForeground": "ink-strong",
+        "hoverBackground": "wash-hover",
+        "pressedBackground": "wash-pressed",
+        "selectionBackground": "wash-pressed",
+        "selectionInactiveBackground": "wash-hover"
+      }
+    },
+    "NavBar": {
+      "borderColor": "wash-none"
+    },
+    "Borders": {
+      "color": "border",
+      "ContrastBorderColor": "border"
+    },
+    "OnePixelDivider": {
+      "background": "border"
+    },
+    "Toolbar": {
+      "borderColor": "border",
+      "Floating": {
+        "background": "popup"
+      }
+    },
+    "Separator": {
+      "separatorColor": "border"
+    },
+    "ToolWindow": {
+      "background": "island",
+      "borderColor": "island",
+      "Button": {
+        "foreground": "ink-muted",
+        "hoverBackground": "wash-hover",
+        "selectedBackground": "wash-pressed",
+        "selectedForeground": "ink-strong",
+        "DragAndDrop": {
+          "buttonDropBackground": "accent-selection",
+          "buttonDropBorderColor": "accent",
+          "buttonFloatingBackground": "chip",
+          "stripeBackground": "frame"
+        }
+      },
+      "Header": {
+        "background": "island",
+        "inactiveBackground": "island",
+        "borderColor": "island"
+      },
+      "HeaderTab": {
+        "selectedInactiveBackground": "island-line",
+        "selectedBackground": "island-line",
+        "hoverBackground": "wash-hover",
+        "hoverInactiveBackground": "wash-hover",
+        "underlinedTabBackground": "island-line",
+        "underlinedTabForeground": "ink-strong",
+        "underlineColor": "accent",
+        "inactiveUnderlineColor": "dim"
+      },
+      "Stripe": {
+        "background": "frame",
+        "borderColor": "wash-none",
+        "separatorColor": "border",
+        "DragAndDrop": {
+          "separatorColor": "accent"
+        }
+      },
+      "DragAndDrop": {
+        "areaBackground": "accent-selection-soft"
+      }
+    },
+    "EditorTabs": {
+      "background": "island",
+      "underlinedTabBackground": "island-line",
+      "inactiveUnderlinedTabBackground": "island",
+      "underlinedTabForeground": "ink-strong",
+      "underlinedTabInactiveForeground": "ink-muted",
+      "inactiveColoredFileBackground": "wash-none",
+      "hoverBackground": "wash-hover",
+      "underlineColor": "accent",
+      "inactiveUnderlineColor": "dim",
+      "underlinedBorderColor": "wash-none",
+      "inactiveUnderlinedTabBorderColor": "wash-none",
+      "underTabsBorderColor": "island",
+      "borderColor": "island"
+    },
+    "Editor": {
+      "background": "island",
+      "shortcutForeground": "accent",
+      "SearchField": {
+        "background": "island-sunken",
+        "borderColor": "border"
+      },
+      "Toolbar": {
+        "borderColor": "border"
+      },
+      "ToolTip": {
+        "background": "popup",
+        "foreground": "ink-strong",
+        "border": "border",
+        "selectionBackground": "accent-selection",
+        "iconHoverBackground": "wash-hover",
+        "errorBackground": "#35232A",
+        "errorBorder": "error",
+        "warningBackground": "#34302A",
+        "warningBorder": "warning",
+        "successBackground": "#1D3435",
+        "successBorder": "success"
+      }
+    },
+    "EditorPane": {
+      "background": "island",
+      "inactiveBackground": "island"
+    },
+    "Code": {
+      "Block": {
+        "borderColor": "border",
+        "EditorPane": {
+          "borderColor": "border"
+        }
+      }
+    },
+    "List": {
+      "background": "island",
+      "foreground": "ink-tree",
+      "hoverBackground": "wash-hover",
+      "hoverInactiveBackground": "wash-hover",
+      "selectionBackground": "accent-selection",
+      "selectionForeground": "ink-strong",
+      "selectionInactiveBackground": "island-line",
+      "Tag": {
+        "background": "chip",
+        "foreground": "ink-muted"
+      },
+      "Button": {
+        "hoverBackground": "wash-hover",
+        "separatorColor": "wash-border"
+      }
+    },
+    "Tree": {
+      "background": "island",
+      "foreground": "ink-tree",
+      "hoverBackground": "wash-hover",
+      "hoverInactiveBackground": "wash-hover",
+      "selectionBackground": "accent-selection",
+      "selectionForeground": "ink-strong",
+      "selectionInactiveBackground": "island-line",
+      "modifiedItemForeground": "#D6C6A4",
+      "errorForeground": "error",
+      "hash": "border"
+    },
+    "Table": {
+      "background": "island",
+      "gridColor": "border",
+      "stripeColor": "island-line",
+      "hoverBackground": "wash-hover",
+      "selectionBackground": "accent-selection",
+      "selectionInactiveBackground": "island-line",
+      "lightSelectionBackground": "accent-selection-soft",
+      "lightSelectionInactiveBackground": "island-line"
+    },
+    "TableHeader": {
+      "background": "island",
+      "bottomSeparatorColor": "border"
+    },
+    "TabbedPane": {
+      "hoverColor": "wash-hover",
+      "underlineColor": "accent",
+      "contentAreaColor": "border"
+    },
+    "Popup": {
+      "background": "popup",
+      "borderColor": "border",
+      "separatorColor": "border",
+      "separatorForeground": "ink-faint",
+      "innerBorderColor": "border",
+      "Header": {
+        "activeBackground": "popup",
+        "inactiveBackground": "popup",
+        "inactiveForeground": "ink-muted"
+      },
+      "inactiveBorderColor": "border",
+      "Toolbar": {
+        "background": "popup",
+        "borderColor": "border"
+      },
+      "Advertiser": {
+        "background": "popup",
+        "foreground": "ink-faint",
+        "borderColor": "border"
+      },
+      "paintBorder": true
+    },
+    "ComplexPopup": {
+      "Header": {
+        "background": "popup"
+      }
+    },
+    "PopupMenu": {
+      "background": "popup",
+      "selectionBackground": "accent-selection"
+    },
+    "Menu": {
+      "background": "popup",
+      "borderColor": "border",
+      "separatorColor": "border"
+    },
+    "MenuItem": {
+      "background": "popup",
+      "selectionBackground": "accent-selection",
+      "acceleratorForeground": "ink-faint"
+    },
+    "MenuBar": {
+      "background": "frame",
+      "borderColor": "wash-none"
+    },
+    "CompletionPopup": {
+      "background": "popup",
+      "foreground": "ink-strong",
+      "selectionBackground": "accent-selection",
+      "selectionInactiveBackground": "island-line",
+      "matchForeground": "accent",
+      "matchSelectionForeground": "accent-hover",
+      "Advertiser": {
+        "background": "popup",
+        "foreground": "ink-faint"
+      }
+    },
+    "SearchEverywhere": {
+      "SearchField": {
+        "background": "island-sunken",
+        "borderColor": "border",
+        "infoForeground": "ink-faint"
+      },
+      "Tab": {
+        "selectedBackground": "accent-selection",
+        "selectedForeground": "ink-strong"
+      },
+      "List": {
+        "separatorColor": "border",
+        "separatorForeground": "ink-faint",
+        "settingsBackground": "popup"
+      },
+      "Advertiser": {
+        "background": "popup",
+        "foreground": "ink-faint"
+      },
+      "Header": {
+        "background": "popup"
+      }
+    },
+    "ToolTip": {
+      "background": "popup",
+      "foreground": "ink-strong",
+      "borderColor": "border",
+      "infoForeground": "ink-muted",
+      "shortcutForeground": "ink-faint",
+      "Actions": {
+        "background": "popup"
+      }
+    },
+    "ParameterInfo": {
+      "background": "popup",
+      "foreground": "ink-muted",
+      "borderColor": "border",
+      "currentParameterForeground": "ink-strong",
+      "currentOverloadBackground": "island-line",
+      "infoForeground": "ink-faint",
+      "lineSeparatorColor": "border"
+    },
+    "AlertDialog": {
+      "background": "popup"
+    },
+    "NewClass": {
+      "Panel": {
+        "background": "popup"
+      },
+      "SearchField": {
+        "background": "island-sunken"
+      }
+    },
+    "Component": {
+      "borderColor": "border",
+      "focusColor": "accent",
+      "focusedBorderColor": "accent",
+      "disabledBorderColor": "border",
+      "errorFocusColor": "error",
+      "inactiveErrorFocusColor": "#35232A",
+      "warningFocusColor": "warning",
+      "inactiveWarningFocusColor": "#34302A",
+      "infoForeground": "ink-faint"
+    },
+    "Button": {
+      "background": "button-face",
+      "foreground": "button-ink",
+      "startBackground": "button-face",
+      "endBackground": "button-face",
+      "startBorderColor": "border",
+      "endBorderColor": "border",
+      "focusedBorderColor": "accent",
+      "disabledBorderColor": "border",
+      "disabledText": "ink-faint",
+      "loadingForeground": "ink-muted",
+      "shadowColor": "wash-none",
+      "default": {
+        "startBackground": "button-default-face",
+        "endBackground": "button-default-face",
+        "startBorderColor": "button-default-face",
+        "endBorderColor": "button-default-face",
+        "foreground": "button-default-ink",
+        "focusColor": "accent-hover",
+        "focusedBorderColor": "accent-hover",
+        "loadingForeground": "button-default-ink",
+        "shadowColor": "wash-none"
+      },
+      "Split": {
+        "default": {
+          "iconColor": "button-default-ink",
+          "separatorColor": "accent-hover"
+        }
+      }
+    },
+    "ToggleButton": {
+      "onBackground": "success",
+      "onForeground": "ink-over-accent",
+      "offBackground": "island-sunken",
+      "offForeground": "ink-muted",
+      "buttonColor": "ink-strong",
+      "borderColor": "border"
+    },
+    "SegmentedButton": {
+      "selectedButtonColor": "chip",
+      "selectedStartBorderColor": "border",
+      "selectedEndBorderColor": "border",
+      "focusedSelectedButtonColor": "accent-selection"
+    },
+    "TextField": {
+      "background": "island-sunken",
+      "foreground": "ink-strong",
+      "caretForeground": "ink"
+    },
+    "TextArea": {
+      "background": "island-sunken",
+      "foreground": "ink-strong",
+      "caretForeground": "ink"
+    },
+    "PasswordField": {
+      "background": "island-sunken",
+      "foreground": "ink-strong",
+      "caretForeground": "ink"
+    },
+    "FormattedTextField": {
+      "background": "island-sunken",
+      "foreground": "ink-strong"
+    },
+    "SearchFieldWithExtension": {
+      "background": "island-sunken"
+    },
+    "ComboBox": {
+      "background": "island-sunken",
+      "nonEditableBackground": "island-sunken",
+      "disabledBackground": "frame",
+      "modifiedItemForeground": "accent",
+      "ArrowButton": {
+        "background": "island-sunken",
+        "nonEditableBackground": "island-sunken",
+        "iconColor": "ink-muted",
+        "disabledIconColor": "ink-faint"
+      },
+      "selectionBackground": "accent-selection"
+    },
+    "CheckBox": {
+      "background": "frame",
+      "foreground": "ink-strong"
+    },
+    "RadioButton": {
+      "background": "frame",
+      "foreground": "ink-strong"
+    },
+    "Label": {
+      "foreground": "ink-strong",
+      "disabledForeground": "ink-faint",
+      "infoForeground": "ink-muted",
+      "errorForeground": "error",
+      "warningForeground": "warning"
+    },
+    "Link": {
+      "foreground": "accent",
+      "activeForeground": "accent",
+      "hoverForeground": "accent-hover",
+      "pressedForeground": "accent-hover",
+      "visitedForeground": "accent",
+      "secondaryForeground": "ink-muted",
+      "focusedBorderColor": "accent"
+    },
+    "Hyperlink": {
+      "linkColor": "accent"
+    },
+    "Bookmark": {
+      "Mnemonic": {
+        "iconForeground": "ink-over-accent",
+        "iconBackground": "warning",
+        "iconBorderColor": "warning"
+      },
+      "MnemonicAssigned": {
+        "background": "warning",
+        "foreground": "ink-over-accent"
+      },
+      "MnemonicAvailable": {
+        "borderColor": "border"
+      },
+      "MnemonicCurrent": {
+        "background": "accent"
+      },
+      "iconBackground": "warning"
+    },
+    "Review": {
+      "Branch": {
+        "Background": "chip",
+        "Background.Hover": "island-line"
+      },
+      "ChatItem": {
+        "Hover": "wash-hover"
+      },
+      "State": {
+        "Background": "chip",
+        "Foreground": "ink-muted"
+      }
+    },
+    "SearchOption": {
+      "selectedBackground": "accent-selection",
+      "selectedHoveredBackground": "accent-frame-selection",
+      "selectedPressedBackground": "accent-frame-selection"
+    },
+    "Badge": {
+      "blueBackground": "accent",
+      "blueForeground": "ink-over-accent",
+      "blueSecondaryBackground": "#252B3E",
+      "blueSecondaryForeground": "accent",
+      "greenBackground": "success",
+      "greenForeground": "ink-over-accent",
+      "greenOutlineBorderColor": "success",
+      "greenOutlineForeground": "success",
+      "greenSecondaryBackground": "#1D3435",
+      "greenSecondaryForeground": "success",
+      "graySecondaryBackground": "chip",
+      "graySecondaryForeground": "ink-muted",
+      "purpleSecondaryBackground": "#342E3E",
+      "purpleSecondaryForeground": "#EAB9FF",
+      "disabledBackground": "chip",
+      "disabledForeground": "ink-faint"
+    },
+    "ActionButton": {
+      "hoverBackground": "wash-hover",
+      "pressedBackground": "wash-pressed",
+      "hoverBorderColor": "wash-none",
+      "pressedBorderColor": "wash-none"
+    },
+    "ProgressBar": {
+      "progressColor": "accent",
+      "indeterminateStartColor": "accent",
+      "indeterminateEndColor": "accent-selection",
+      "trackColor": "island-line",
+      "failedColor": "error",
+      "passedColor": "success",
+      "progressCounterBackground": "accent",
+      "progressCounterForeground": "ink-over-accent"
+    },
+    "Slider": {
+      "background": "frame",
+      "trackColor": "island-line",
+      "buttonColor": "accent",
+      "buttonBorderColor": "accent",
+      "tickColor": "ink-faint",
+      "foreground": "ink-strong"
+    },
+    "Counter": {
+      "background": "accent",
+      "foreground": "ink-over-accent"
+    },
+    "Tag": {
+      "background": "chip"
+    },
+    "Shortcut": {
+      "borderColor": "border",
+      "foreground": "ink-muted"
+    },
+    "DragAndDrop": {
+      "borderColor": "accent",
+      "areaBackground": "accent-selection-soft"
+    },
+    "SpeedSearch": {
+      "background": "popup",
+      "foreground": "ink-strong",
+      "borderColor": "border",
+      "errorForeground": "error"
+    },
+    "ScrollBar": {
+      "trackColor": "wash-none",
+      "thumbColor": "#3A425299",
+      "thumbBorderColor": "#3A425299",
+      "hoverTrackColor": "wash-none",
+      "hoverThumbColor": "#3A4252D9",
+      "hoverThumbBorderColor": "#3A4252D9",
+      "Transparent": {
+        "trackColor": "wash-none",
+        "thumbColor": "#3A425299",
+        "thumbBorderColor": "#3A425200",
+        "hoverTrackColor": "#3A42521A",
+        "hoverThumbColor": "#3A4252D9",
+        "hoverThumbBorderColor": "#3A4252D9"
+      },
+      "Mac": {
+        "trackColor": "wash-none",
+        "thumbColor": "#3A425299",
+        "hoverThumbColor": "#3A4252D9"
+      }
+    },
+    "Notification": {
+      "background": "popup",
+      "foreground": "ink-strong",
+      "borderColor": "border",
+      "errorBackground": "#35232A",
+      "errorForeground": "ink-strong",
+      "errorBorderColor": "error",
+      "ToolWindow": {
+        "informativeBackground": "#252B3E",
+        "informativeBorderColor": "accent",
+        "warningBackground": "#34302A",
+        "warningBorderColor": "warning",
+        "errorBackground": "#35232A",
+        "errorBorderColor": "error",
+        "informativeForeground": "ink-strong",
+        "warningForeground": "ink-strong",
+        "errorForeground": "ink-strong"
+      },
+      "Button": {
+        "background": "button-face",
+        "foreground": "button-ink",
+        "borderColor": "border"
+      },
+      "MoreButton": {
+        "background": "popup",
+        "foreground": "ink-muted",
+        "innerBorderColor": "border"
+      },
+      "linkForeground": "accent",
+      "iconHoverBackground": "wash-hover",
+      "WelcomeScreen": {
+        "separatorColor": "border"
+      },
+      "Shadow": {
+        "top0Color": "wash-none",
+        "top1Color": "wash-none",
+        "bottom0Color": "wash-none",
+        "bottom1Color": "wash-none",
+        "left0Color": "wash-none",
+        "left1Color": "wash-none",
+        "right0Color": "wash-none",
+        "right1Color": "wash-none",
+        "topLeft0Color": "wash-none",
+        "topLeft1Color": "wash-none",
+        "topRight0Color": "wash-none",
+        "topRight1Color": "wash-none",
+        "bottomLeft0Color": "wash-none",
+        "bottomLeft1Color": "wash-none",
+        "bottomRight0Color": "wash-none",
+        "bottomRight1Color": "wash-none"
+      }
+    },
+    "NotificationsToolwindow": {
+      "newNotification": {
+        "background": "popup",
+        "hoverBackground": "wash-hover"
+      }
+    },
+    "Banner": {
+      "infoBackground": "#252B3E",
+      "infoBorderColor": "accent",
+      "warningBackground": "#34302A",
+      "warningBorderColor": "warning",
+      "errorBackground": "#35232A",
+      "errorBorderColor": "error",
+      "successBackground": "#1D3435",
+      "successBorderColor": "success"
+    },
+    "RunWidget": {
+      "foreground": "ink-strong",
+      "iconColor": "icon-stroke",
+      "runIconColor": "success",
+      "runningBackground": "success",
+      "runningIconColor": "ink-over-accent",
+      "stopBackground": "error",
+      "hoverBackground": "wash-hover",
+      "pressedBackground": "wash-pressed"
+    },
+    "Debugger": {
+      "EvaluateExpression": {
+        "background": "island-sunken"
+      },
+      "Variables": {
+        "valueForeground": "#BDCCE0",
+        "typeForeground": "#5EE2C6",
+        "changedValueForeground": "accent",
+        "modifyingValueForeground": "accent",
+        "errorMessageForeground": "error",
+        "exceptionForeground": "error",
+        "collectingDataForeground": "ink-faint",
+        "evaluatingExpressionForeground": "ink-faint"
+      }
+    },
+    "VersionControl": {
+      "FileHistory": {
+        "Commit": {
+          "selectedBranchBackground": "island-line"
+        }
+      },
+      "Log": {
+        "Commit": {
+          "currentBranchBackground": "island-line",
+          "unmatchedForeground": "ink-faint",
+          "Reference": {
+            "foreground": "ink-muted"
+          }
+        }
+      },
+      "RefLabel": {
+        "backgroundBase": "chip",
+        "foreground": "ink-muted"
+      },
+      "MarkerPopup": {
+        "borderColor": "border"
+      },
+      "GitLog": {
+        "headIconColor": "#D6C6A4",
+        "localBranchIconColor": "#B2D1B7",
+        "remoteBranchIconColor": "#B8C8E7",
+        "tagIconColor": "ink-muted",
+        "otherIconColor": "ink-muted"
+      },
+      "Merge": {
+        "Status": {
+          "NoConflicts": {
+            "foreground": "success"
+          }
+        }
+      }
+    },
+    "FileColor": {
+      "Yellow": "#393837",
+      "Green": "#253C41",
+      "Orange": "#3C393B",
+      "Rose": "#3A2D37",
+      "Violet": "#393649",
+      "Blue": "#2C3449",
+      "Gray": "#242A36"
+    },
+    "WelcomeScreen": {
+      "background": "frame",
+      "borderColor": "border",
+      "separatorColor": "border",
+      "Details": {
+        "background": "island"
+      },
+      "Projects": {
+        "background": "island",
+        "selectionBackground": "accent-selection",
+        "selectionInactiveBackground": "island-line",
+        "actions": {
+          "background": "island"
+        }
+      },
+      "SidePanel": {
+        "background": "frame"
+      },
+      "Banner": {
+        "background": "popup"
+      }
+    },
+    "Plugins": {
+      "background": "island",
+      "SectionHeader": {
+        "background": "frame",
+        "foreground": "ink-muted"
+      },
+      "SearchField": {
+        "background": "island-sunken"
+      },
+      "Button": {
+        "installBackground": "button-face",
+        "installForeground": "success",
+        "installBorderColor": "success",
+        "installFillBackground": "success",
+        "installFillForeground": "ink-over-accent",
+        "updateBackground": "accent",
+        "updateForeground": "ink-over-accent",
+        "updateBorderColor": "accent"
+      },
+      "tagBackground": "chip",
+      "tagForeground": "ink-muted",
+      "eapTagBackground": "#34302A",
+      "paidTagBackground": "#252B3E",
+      "trialTagBackground": "#1D3435",
+      "Tab": {
+        "selectedBackground": "accent-selection",
+        "selectedForeground": "ink-strong",
+        "hoverBackground": "wash-hover"
+      },
+      "lightSelectionBackground": "accent-selection-soft"
+    }
+  },
+  "icons": {
+    "ColorPalette": {
+      "#CED0D6": "icon-stroke"
+    }
+  }
+}
